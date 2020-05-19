@@ -1,7 +1,8 @@
 # OHcomplianceStrategies
 
 prerequisites: 
-packages: #tolerance, lme4, dplyr, FSA
+
+packages: #tolerance, #lme4, #dplyr, #FSA
 
 R application on occupational compliance strategies to test workers exposure to chemical agents with the
 Occupational Exposure Limit (OEL).

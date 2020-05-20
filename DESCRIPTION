@@ -1,6 +1,6 @@
 Package: OHcomplianceStrategies
 Type: Package
-Title: Strategies for testing compliance with OEL value in R
+Title: Statistical compliance strategies to test occupational exposure with OEL value
 Version: 0.1.0
 Author: Antonio d'Errico
 Maintainer: Antonio d'Errico <tony.derrico@outlook.it>

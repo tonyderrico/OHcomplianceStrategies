@@ -32,7 +32,7 @@
 #' @export
 
 
- Ind.Compl <- function(x, Worker, Agent) {
+ Ind.Compl <- function(x, Worker, Agent, OEL) {
     M <- x %>% group_by(Worker) %>% summarise(mean = mean(Agent))
     M1 <- mean(M$mean)
     t <- lmer(Agent~1 + ( 1| Worker), data = x )
@@ -40,7 +40,7 @@
     vv <- as.data.frame(VCrandom)
     wwsd <- sqrt(vv$vcov[2])
     bwsd <- sqrt(vv$vcov[1])
-    H <- (log(1) - (M1 + 1.645*wwsd)) / bwsd
+    H <- (log(OEL) - (M1 + 1.645*wwsd)) / bwsd
     IE <- 1 - pnorm(H)
     ifelse(IE < 0.2, "TRUE", "FALSE")
  }

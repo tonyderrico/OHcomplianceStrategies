@@ -2,7 +2,7 @@
 
 prerequisite packages: #tolerance, #lme4, #dplyr, #FSA
 
-R application on occupational compliance strategies to test workers exposure to airborne substances within the Occupational Exposure Limit (OEL).
+R application on occupational compliance strategies to test similar exposede groups (SEGs) to airborne substances within the Occupational Exposure Limit (OEL).
 
 Package:
 

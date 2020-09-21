@@ -8,7 +8,7 @@
 OverExp <- function(x, Worker, Agent, OEL) {
   M <- xA %>% group_by(Worker) %>% summarise(mean = mean(Agent))
   M1 <- mean(M$mean)
-  xA <- lmer(logDust~1 + ( 1| Worker), data = x )
+  xA <- lmer(Agent~1 + ( 1| Worker), data = x )
   VCrandom <- VarCorr(xA)
   vv <- as.data.frame(VCrandom)
   wwsd <- sqrt(vv$vcov[2])

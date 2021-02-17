@@ -1,6 +1,6 @@
 #'Phase 2, EN689 1995  - testing compliance exceedance
 #'
-#' Normal distribution of the measurements is operated, and 99.9th percentile and 95th percentile values are observed to assess the potential exceedance of the OEL.
+#' The normal distribution of the measurements is operated, and 99.9th percentile and 95th percentile values are observed to assess the possible exceedance of the OEL.
 #' Compliance or "Green Area" is achieved if the value of the 99,9 the percentile is lower than the OEL, Uncertain Compliance or "Orange Area" is achieved if
 #' the value of the 95th percentile is lower than the OEL. Non Compliance or "Red Area" is achieved if the OEL is greater than the value of the 95th percentile.
 #' @param x measurements of the SEG under assessment

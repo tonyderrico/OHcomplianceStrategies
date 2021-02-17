@@ -1,6 +1,6 @@
 #'Phase 1, EN689 1995  - testing compliance for 1 measurement
 #'
-#'Potential compliance, uncertain compliance or non-compliance can be evaluated
+#'Compliance, uncertain compliance or non-compliance can be evaluated
 #'for one measurement. Calculation of exposure index is performed (worker measurement/OEL).
 #'Compliance is achieved if the index is below or equal to 0.1.
 #'If the index is greater than 0.1 but lower/equal than 1, there is no decision ("UC")
@@ -22,7 +22,7 @@
 
 #'Phase 1, EN689 1995  - testing compliance for at least 3 measurements
 #'
-#'Potential compliance, uncertain compliance or non-compliance can be evaluated
+#'Compliance, uncertain compliance or non-compliance can be evaluated
 #'for at least three measurements. Calculation of exposure indeces is performed (worker measurement/OEL).
 #'Compliance is achieved if all indeces are below or equal to 0.25.
 #'If at least an index is greater than 0.25 but all indeces are lower/equal than 1 and the

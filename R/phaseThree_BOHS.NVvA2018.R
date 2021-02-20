@@ -1,4 +1,4 @@
-#'Phase 3, BOHS/NvVA 2018  - Between Worker Variance
+#'Phase 3, BOHS/NvVA 2011  - Between Worker Variance
 #'
 #' REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
 #' and total variance. The Compliance is achieved if the between worker variance is lower
@@ -21,7 +21,7 @@
     ifelse(bw < 0.2*total_variance, "TRUE", "FALSE")
   }
 
-#'Phase 3, BOHS/NVVA 2018 - Individual Compliance
+#'Phase 3, BOHS/NVVA 2011 - Individual Compliance
 #'
 #' Individual Compliance is achieved when there is less than 20% probability that
 #' workers in a SEG have more than 5% of exposure greater than the OEL.

@@ -4,13 +4,13 @@
 \alias{phase1EN2018_k5}
 \title{Phase 1 for 5 or more measurements in EN689 2018}
 \usage{
-phase1EN2018_k5(x)
+phase1EN2018_k5(samples)
 }
 \arguments{
-\item{x}{Five or more measurements under assessment}
+\item{samples}{Five or more measurements}
 }
 \value{
 Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 }
 \description{
-Strategy of compliance performed in EN689 2018Potential compliance, uncertain compliance or non-compliance of a SEG can be evaluated for three measurements. Index calculation is performed (worker measurement/OEL). Compliance is achieved if all of the index of the SEG are below or equal to 0.2 and below the OEL. There is Uncertain Compliance if at least one index is greater than 0.2 but below the OEL. There is Non-Compliance if at least an index is greater than OEL.
+Strategy of compliance performed in EN689 2018. Compliance, uncertain compliance or non-compliance of a SEG can be evaluated for three measurements. Index calculation is performed (worker measurement/OEL). Compliance is achieved if all of the index of the SEG are below or equal to 0.2 and below the OEL. There is Uncertain Compliance if at least one index is greater than 0.2 but below the OEL. There is Non-Compliance if at least an index is greater than OEL.

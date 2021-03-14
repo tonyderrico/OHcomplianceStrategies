@@ -8,9 +8,9 @@
 #' @return Green Area, Orange Area or Red Area
 #' @export
 
-phase2EN689.1995 <- function(seg, OEL) {
-  QN <- qnorm(0.999, mean(seg), sd(seg))
-  QN1 <- qnorm(0.95, mean(seg), sd(seg))
+phase2EN689.1995 <- function(samples, OEL) {
+  QN <- qnorm(0.999, mean(samples), sd(samples))
+  QN1 <- qnorm(0.95, mean(samples), sd(samples))
   if(QN < OEL)
   {print("Green Area")}
   else if(QN1 < OEL)

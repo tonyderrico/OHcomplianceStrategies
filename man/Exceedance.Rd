@@ -4,10 +4,10 @@
 \alias{Exceedance}
 \title{Exceedance}
 \usage{
-Exceedance(x, OEL)
+Exceedance(samples, OEL)
 }
 \arguments{
-\item{x}{measurements under assessment}
+\item{samples}{measurements under assessment}
 \item{OEL}{Occupational Exposure Limit}
 }
 \value{

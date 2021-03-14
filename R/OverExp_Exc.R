@@ -5,10 +5,10 @@
 #' @return % of OverExposure
 #' @export
 
-OverExp <- function(x, Worker, Agent, OEL) {
-  M <- xA %>% group_by(Worker) %>% summarise(mean = mean(Agent))
+OverExp <- function(samples, workers, agent, OEL) {
+  M <- xA %>% group_by(workers) %>% summarise(mean = mean(agent))
   M1 <- mean(M$mean)
-  xA <- lmer(Agent~1 + ( 1| Worker), data = x )
+  xA <- lmer(agent~1 + ( 1| workers), data = samples)
   VCrandom <- VarCorr(xA)
   vv <- as.data.frame(VCrandom)
   wwsd <- sqrt(vv$vcov[2])
@@ -25,7 +25,7 @@ OverExp <- function(x, Worker, Agent, OEL) {
 #' @return % of Exceedance
 #' @export
 
-  Exceedance <- function(x, OEL) {
+  Exceedance <- function(samples,OEL) {
     GM <- geomean(x)
     GSD <- geosd(x)
     Exc <- (log(OEL) - log(GM)) / log(GSD)

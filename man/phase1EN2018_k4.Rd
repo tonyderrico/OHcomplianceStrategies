@@ -4,7 +4,7 @@
 \alias{phase1EN2018_k4}
 \title{Phase 1 for four measurements in EN689 2018}
 \usage{
-phase1EN2018_k4(samples)
+phase1EN2018_k4(samples, OEL)
 }
 \arguments{
 \item{samples}{Four measurements}

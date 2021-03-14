@@ -4,10 +4,11 @@
 \alias{phase1EN2018_k4}
 \title{Phase 1 for four measurements in EN689 2018}
 \usage{
-phase1EN2018_k4(x)
+phase1EN2018_k4(samples)
 }
 \arguments{
-\item{x}{Four measurements under assessment}
+\item{samples}{Four measurements}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{
 Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")

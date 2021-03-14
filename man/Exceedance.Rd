@@ -7,7 +7,7 @@
 Exceedance(samples, OEL)
 }
 \arguments{
-\item{samples}{measurements under assessment}
+\item{samples}{exposure concentrations of the SEG under assessment}
 \item{OEL}{Occupational Exposure Limit}
 }
 \value{

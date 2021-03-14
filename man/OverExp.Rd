@@ -4,12 +4,12 @@
 \alias{OverExp}
 \title{OverExposure}
 \usage{
-OverExp(x, Workers, Agent, OEL)
+OverExp(seg, workers, samples, OEL)
 }
 \arguments{
-\item{x}{SEG}
-\item{Workers}{Workers ID}
-\item{Agent}{measurements under-assessment}
+\item{seg}{Similarly Exposed Group}
+\item{workers}{Workers ID}
+\item{samples}{Exposure concentrations}
 \item{OEL}
 }
 \value{numeric outputs
@@ -17,6 +17,6 @@ OverExp(x, Workers, Agent, OEL)
 }
 \description{
 Overexposure is the probability that
-the mean exposure of a randomly selected worker is greater
+the mean exposures of a randomly selected worker can be greater
 than the OEL.
 }

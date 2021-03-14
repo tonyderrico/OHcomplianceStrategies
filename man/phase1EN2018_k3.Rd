@@ -4,10 +4,10 @@
 \alias{phase1EN2018_k3}
 \title{Phase 1 for 1 measurement in EN689 2018}
 \usage{
-phase1EN2018_k3(x)
+phase1EN2018_k3(samples)
 }
 \arguments{
-\item{x}{Three measurements under assessment}
+\item{samples}{Three measurements under assessment}
 }
 \value{
 Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")

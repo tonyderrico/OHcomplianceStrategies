@@ -21,7 +21,7 @@ OverExp <- function(x, Worker, Agent, OEL) {
 #'
 #' Probability of the OEL exceedance of the SEG considered
 #' @param x measurements under assessment
-#' @param OEL concentration of OEl
+#' @param OEL concentration 
 #' @return % of Exceedance
 #' @export
 

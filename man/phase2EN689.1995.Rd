@@ -4,10 +4,11 @@
 \alias{phase2EN689.1995}
 \title{Phase 2 in EN689 1995}
 \usage{
-phase2EN689.1995(x)
+phase2EN689.1995(samples)
 }
 \arguments{
-\item{x}{measurements of the SEG under assessment}
+\item{samples}{exposure concentrations}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{
 Green Area, Orange Area or Red Area

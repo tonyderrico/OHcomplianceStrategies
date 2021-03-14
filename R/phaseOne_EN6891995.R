@@ -11,7 +11,7 @@
 #' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-  phase1EN1995_k1 <- function(x, OEL) {
+  phase1EN1995_k1 <- function(samples, OEL) {
     x1 <- x/OEL
     if(x[1] > OEL || x1[1] > 1)
     {print("NC")}
@@ -35,7 +35,7 @@
 #' @return Compliance (C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-  phase1EN1995_k <- function(x, OEL) {
+  phase1EN1995_k <- function(samples, OEL) {
     x1 <- x/OEL
     if(any(x > OEL) || any(x1 > 1))
     {print("NC")}

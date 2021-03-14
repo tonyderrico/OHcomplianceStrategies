@@ -6,14 +6,14 @@
 #'If the index is greater than 0.1 but lower/equal than 1, there is no decision ("UC")
 #'and additional measurements are necessary (at least three). Non-Compliance is accomplished
 #'if the measurement is greater than the OEL and/or if the exposure index is greater than 1.
-#' @param x One measurement under assessment
-#' @param OEL Establish the OEL (numeric)
+#' @param sample One measurement under assessment
+#' @param OEL Occupational Exposure Limit of the agent
 #' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-  phase1EN1995_k1 <- function(samples, OEL) {
-    x1 <- x/OEL
-    if(x[1] > OEL || x1[1] > 1)
+  phase1EN1995_k1 <- function(sample, OEL) {
+    x1 <- sample/OEL
+    if(sample[1] > OEL || x1[1] > 1)
     {print("NC")}
     else if(x1[1] <= 0.1)
     {print("C")}
@@ -30,19 +30,19 @@
 #'Contrarly, there is no decision ("UC").
 #'There is Non-Compliance if at least a measurement is greater than the OEL
 #'and/or if at least an exposure index is greater than 1.
-#' @param x at least 3 measurements (numeric)
-#' @param OEL Establish the OEL (numeric)
+#' @param samples At least 3 measurements
+#' @param OEL Occupational Exposure Limit of the agent
 #' @return Compliance (C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
   phase1EN1995_k <- function(samples, OEL) {
-    x1 <- x/OEL
-    if(any(x > OEL) || any(x1 > 1))
+    x1 <- samples/OEL
+    if(any(samples > OEL) || any(x1 > 1))
     {print("NC")}
-    else if(any(x1 > 0.25) || geomean(x) > 0.5)
+    else if(any(x1 > 0.25) || geomean(samples) > 0.5)
     {print("UC")}
     else if(all(x1 <= 0.25))
     {print("C")}
-    else if(geomean(x) <= 0.5)
+    else if(geomean(samples) <= 0.5)
     {print("C")}}
 

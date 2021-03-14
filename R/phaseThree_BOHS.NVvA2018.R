@@ -3,16 +3,16 @@
 #' REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
 #' and total variance. The Compliance is achieved if the between worker variance is lower
 #' than 0.2 of the total variance. Contrarly, there is Non-Compliance.
-#' @param x measurements with repeats of the SEG under assessment
-#' @param Agent agent concentrations of exposed workers
-#' @param Worker workers codes/names
+#' @param samples measurements with repeats of the SEG under assessment
+#' @param agent agent concentrations of exposed workers
+#' @param workers workers codes/names/ID
 #' @return BW < 0.2totalVariance ("TRUE"), BW > 0.2totalVariance ("FALSE")
 #' @export
 
 
 
-  phase3BoHS.NvVA <- function(x, Worker, Agent) {
-    xA <- lmer(Agent~1 + ( 1| Worker), data = x )
+  phase3BoHS.NvVA <- function(samples, workers, agent) {
+    xA <- lmer(agent~1 + ( 1| workers), data = samples )
     VCrandom <- VarCorr(xA)
     vv <- as.data.frame(VCrandom)
     ww <- vv$vcov[2]
@@ -25,17 +25,17 @@
 #'
 #' Individual Compliance is achieved when there is less than 20% probability that
 #' workers in a SEG have more than 5% of exposure greater than the OEL.
-#' @param x measurements with repeats of the SEG under assessment
-#' @param Agent agent concentrations
-#' @param Worker workers code/name
+#' @param samples measurements with repeats of the SEG under assessment
+#' @param agent agent concentrations
+#' @param workers workers code/name
 #' @return BW < 0.2totalVariance, True or False
 #' @export
 
 
- Ind.Compl <- function(x, Worker, Agent, OEL) {
-    M <- x %>% group_by(Worker) %>% summarise(mean = mean(Agent))
+ Ind.Compl <- function(samples, workers, agent, OEL) {
+    M <- x %>% group_by(workers) %>% summarise(mean = mean(agent))
     M1 <- mean(M$mean)
-    t <- lmer(Agent~1 + ( 1| Worker), data = x )
+    t <- lmer(agent~1 + ( 1| workers), data = samples )
     VCrandom <- VarCorr(t)
     vv <- as.data.frame(VCrandom)
     wwsd <- sqrt(vv$vcov[2])

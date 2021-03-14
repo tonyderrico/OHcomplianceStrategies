@@ -4,16 +4,16 @@
 \alias{phase1EN1995_k3}
 \title{Phase 1, EN689 1995  - testing compliance for 3 measurements}
 \usage{
-phase1EN1995_k3(x, OEL)
+phase1EN1995_k3(samples, OEL)
 }
 \arguments{
-\item{x}{3 measurements (numeric)}
+\item{samples}{3 measurements}
 
-\item{OEL}{Establish the OEL (numeric)}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{
 Compliance (C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 }
 \description{
-Potential compliance, uncertain compliance or non-compliance of a SEG can be evaluated for three measurements. Index calculation is performed (worker measurement/OEL). Compliance is achieved if all of the index of the SEG are below or equal to 0.25 and below the OEL. There is Uncertain Compliance if at least one index is greater than 0.25 but below the OEL. There is Non-Compliance if at least an index is greater than OEL.
+Compliance, uncertain compliance or non-compliance of a SEG can be evaluated for three measurements. Index calculation is performed (worker measurement/OEL). Compliance is achieved if all of the index of the SEG are below or equal to 0.25 and below the OEL. There is Uncertain Compliance if at least one index is greater than 0.25 but below the OEL. There is Non-Compliance if at least an index is greater than OEL.
 }

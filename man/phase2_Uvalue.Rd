@@ -4,10 +4,11 @@
 \alias{phase2_Uvalue}
 \title{Phase 2 in EN689 2018}
 \usage{
-phase2_Uvalue(x)
+phase2_Uvalue(samples, OEL)
 }
 \arguments{
-\item{x}{measurements of the SEG under assessment from 6 to 10}
+\item{samples}{from 6 to 10 measurements}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{
 U value > or < than U thresholds established (Check table online or EN689:2018 Annex F)

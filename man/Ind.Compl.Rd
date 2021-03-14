@@ -4,12 +4,12 @@
 \alias{Ind.Compl}
 \title{Individual Compliance in BOHS/NVvA - 2011}
 \usage{
-Ind.Compl(x, Workers, Agent)
+Ind.Compl(SEG, workers, agent)
 }
 \arguments{
-\item{x}{Similar exposed group- SEG}
-\item{Workers}{Workers ID}
-\item{Agent}{measurements with at least one repeat}
+\item{SEG}{Similar exposed group- SEG}
+\item{workers}{Workers ID}
+\item{agent}{measurements with at least one repeat}
 }
 \value{numeric outputs}
 

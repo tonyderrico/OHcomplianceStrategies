@@ -4,12 +4,12 @@
 \alias{phase1EN1995_k}
 \title{Phase 1, EN689 1995  - testing compliance for 3 or > measurements}
 \usage{
-phase1EN1995_k(x, OEL)
+phase1EN1995_k(samples, OEL)
 }
 \arguments{
-\item{x}{3 or > measurements (numeric)}
+\item{samples}{3 or > measurements}
 
-\item{OEL}{Establish the OEL (numeric)}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{
 Compliance ("C"), Ucertainty Compliance ("UC), Non-Compliance ("NC")

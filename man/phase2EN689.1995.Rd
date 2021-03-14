@@ -4,7 +4,7 @@
 \alias{phase2EN689.1995}
 \title{Phase 2 in EN689 1995}
 \usage{
-phase2EN689.1995(samples)
+phase2EN689.1995(samples, OEL)
 }
 \arguments{
 \item{samples}{exposure concentrations}

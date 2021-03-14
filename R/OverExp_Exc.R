@@ -1,7 +1,10 @@
 #'OverExposure
 #'
 #' OverExposure Calculation
-#' @param x measurements and repeats of the SEG under assessment
+#' @param samples measurements and repeats of the SEG under assessment
+#' @param workers workers codes/names/ID
+#' @param agent concentration of the agent
+#' @param OEL Occupational Exposure Limit of the agent
 #' @return % of OverExposure
 #' @export
 
@@ -20,14 +23,14 @@ OverExp <- function(samples, workers, agent, OEL) {
 #'Exceedance
 #'
 #' Probability of the OEL exceedance of the SEG considered
-#' @param x measurements under assessment
-#' @param OEL concentration 
+#' @param samples measurements under assessment
+#' @param OEL Occupational Exposure Limit of the agent 
 #' @return % of Exceedance
 #' @export
 
   Exceedance <- function(samples,OEL) {
-    GM <- geomean(x)
-    GSD <- geosd(x)
+    GM <- geomean(samples)
+    GSD <- geosd(samples)
     Exc <- (log(OEL) - log(GM)) / log(GSD)
     1 - pnorm(Exc)
   }

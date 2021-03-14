@@ -4,7 +4,7 @@
 #' and total variance. The Compliance is achieved if the between worker variance is lower
 #' than 0.2 of the total variance. Contrarly, there is Non-Compliance.
 #' @param samples measurements with repeats of the SEG under assessment
-#' @param agent agent concentrations of exposed workers
+#' @param agent concentrations of the agent
 #' @param workers workers codes/names/ID
 #' @return BW < 0.2totalVariance ("TRUE"), BW > 0.2totalVariance ("FALSE")
 #' @export

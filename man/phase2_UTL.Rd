@@ -4,10 +4,11 @@
 \alias{phase2_UTL}
 \title{Phase 2/Statistical test in EN689:2018}
 \usage{
-phase2_UTL(x)
+phase2_UTL(samples)
 }
 \arguments{
-\item{x}{measurements of the SEG under assessment}
+\item{samples}{exposure concentrations}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{
 UTL > OEL? TRUE or FALSE

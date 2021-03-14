@@ -4,7 +4,7 @@
 \alias{phase2_UTL}
 \title{Phase 2/Statistical test in EN689:2018}
 \usage{
-phase2_UTL(samples)
+phase2_UTL(samples, OEL)
 }
 \arguments{
 \item{samples}{exposure concentrations}

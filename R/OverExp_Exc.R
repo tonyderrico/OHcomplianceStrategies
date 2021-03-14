@@ -23,14 +23,14 @@ OverExp <- function(seg, workers, samples, OEL) {
 #'Exceedance
 #'
 #' Probability of the OEL exceedance of the SEG considered
-#' @param seg measurements and repeats of the SEG under assessment
+#' @param samples measurements of the SEG under assessment
 #' @param OEL Occupational Exposure Limit of the agent 
 #' @return % of Exceedance
 #' @export
 
-  Exceedance <- function(seg,OEL) {
-    GM <- geomean(seg)
-    GSD <- geosd(seg)
+  Exceedance <- function(samples,OEL) {
+    GM <- geomean(samples)
+    GSD <- geosd(samples)
     Exc <- (log(OEL) - log(GM)) / log(GSD)
     1 - pnorm(Exc)
   }

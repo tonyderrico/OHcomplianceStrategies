@@ -8,6 +8,7 @@ phase1EN2018_k5(samples)
 }
 \arguments{
 \item{samples}{Five or more measurements}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{
 Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")

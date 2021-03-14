@@ -4,15 +4,15 @@
 \alias{phase3BoHS.NvVA}
 \title{Phase 3 in BOHS/NVVA 2018}
 \usage{
-phase3BoHS.NvVA(Agent, Workers, x)
+phase3BoHS.NvVA(samples, workers, seg)
 }
 \arguments{
-\item{x}{SEG}
-\item{Agent}{measurements with at least one repeat}
-\item{Worker}{Workers ID}
+\item{seg}{Similarly Exposed Group}
+\item{samples}{measurements with at least one repeat}
+\item{workers}{Workers ID}
 }
 \value{
-Between workers < 0.2totalVariance, True or False
+True or False
 }
 \description{
 Between worker variance compliance is reached when it accounts to be 20 percent of the total variance

@@ -10,7 +10,7 @@
 #' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-  phase1EN2018_k3 <- function(x, OEL) {
+  phase1EN2018_k3 <- function(samples, OEL) {
     ifelse(any(x[1:3] > OEL), "NC", ifelse(any(x[1:3] >= 0.1*OEL), "UC","C"))
   }
 
@@ -26,7 +26,7 @@
 #' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-phase1EN2018_k4 <- function(x, OEL) {
+phase1EN2018_k4 <- function(samples, OEL) {
   ifelse(any(x[1:4] > OEL), "NC", ifelse(any(x[1:4] >= 0.15*OEL), "UC","C"))}
 
 #'Phase 1, EN689 2018  - testing compliance for 5 measurements

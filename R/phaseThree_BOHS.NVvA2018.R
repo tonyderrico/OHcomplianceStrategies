@@ -33,7 +33,7 @@
 
 
  Ind.Compl <- function(seg, workers, samples, OEL) {
-    M <- x %>% group_by(workers) %>% summarise(mean = mean(samples))
+    M <- seg %>% group_by(workers) %>% summarise(mean = mean(samples))
     M1 <- mean(M$mean)
     t <- lmer(samples~1 + ( 1| workers), data = seg )
     VCrandom <- VarCorr(t)

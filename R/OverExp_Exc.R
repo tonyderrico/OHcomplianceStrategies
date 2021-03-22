@@ -9,7 +9,7 @@
 #' @export
 
 OverExp <- function(seg, workers, samples, OEL) {
-  M <- xA %>% group_by(workers) %>% summarise(mean = mean(samples))
+  M <- seg %>% group_by(workers) %>% summarise(mean = mean(samples))
   M1 <- mean(M$mean)
   xA <- lmer(samples~1 + ( 1| workers), data = seg)
   VCrandom <- VarCorr(xA)

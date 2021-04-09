@@ -11,14 +11,14 @@
 
 
 
-  phase3BoHS.NvVA <- function(seg, workers, samples) {
+  phase3_BoHS.NvVA <- function(seg, workers, samples) {
     xA <- lmer(samples~1 + ( 1| workers), data = seg )
     VCrandom <- VarCorr(xA)
     vv <- as.data.frame(VCrandom)
     ww <- vv$vcov[2]
     bw <- vv$vcov[1]
     total_variance <- bw + ww
-    ifelse(bw < 0.2*total_variance, "TRUE", "FALSE")
+    ifelse(bw < 0.2*total_variance, "Compliance", "Non-Compliance")
   }
 
 #'Phase 3, BOHS/NVVA 2011 - Individual Compliance
@@ -32,7 +32,7 @@
 #' @export
 
 
- Ind.Compl <- function(seg, workers, samples, OEL) {
+ Individual_Compliance <- function(seg, workers, samples, OEL) {
     M <- seg %>% group_by(workers) %>% summarise(mean = mean(samples))
     M1 <- mean(M$mean)
     t <- lmer(samples~1 + ( 1| workers), data = seg )
@@ -42,5 +42,5 @@
     bwsd <- sqrt(vv$vcov[1])
     H <- (log(OEL) - (M1 + 1.645*wwsd)) / bwsd
     IE <- 1 - pnorm(H)
-    ifelse(IE < 0.2, "TRUE", "FALSE")
+    ifelse(IE < 0.2, "Compliance", "Non-Compliance")
  }

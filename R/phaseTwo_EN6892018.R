@@ -35,7 +35,7 @@ phase2_Uvalue <- function(samples, OEL){
 #' @export
 
 phase2_UTL <- function(samples, OEL) {
-  TL <- normtol.int(log(samples), alpha = 0.05, P = 0.7, side = 1)
+  TL <- normtol.int(log(samples), alpha = 0.3, P = 0.95, side = 1)
   UTL <- TL$`1-sided.upper`
   ifelse(exp(UTL) > OEL, "TRUE", "FALSE")
 }

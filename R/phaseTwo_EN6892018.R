@@ -26,7 +26,7 @@ phase2_Uvalue <- function(samples, OEL){
 
 #'Phase 2, EN689 2018 - UTL (Upper Tolerance Limit), 95% C.I., 70% C.L.
 #'
-#' The test is based on the comparison of the UTL having 95% Confidence Interval with 70% Confidence
+#' The test is based on the comparison of the UTL having 95% P.C. with 70% Confidence
 #' Level with the OEL. If the UTL is greater than OEL, there is exceedance and so Non-Compliance.
 #' Contrarly, if the UTL is lower than OEL, the probability of exceedance is acceptable, so there is Compliance.
 #' @param samples at least 6 measurements of the SEG under assessment

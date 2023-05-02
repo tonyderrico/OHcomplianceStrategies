@@ -39,6 +39,3 @@ phase2_UTL <- function(samples, OEL) {
   UTL <- TL$`1-sided.upper`
   ifelse(exp(UTL) > OEL, "TRUE", "FALSE")
 }
-
-
-aaaaa

@@ -10,19 +10,19 @@
 #' @return U value > ("TRUE") or < ("FALSE)  U thresholds
 #' @export
 
-phase2_Uvalue <- function(samples, OEL){
+phase2_Uvalue <- function(samples, OEL) {
+  # Calculate U-value
   U <- (log(OEL) - log(geomean(samples))) / log(geosd(samples))
-  if(length(samples) == 6)
-  {U > 2.187}
-  else if(length(samples) == 7)
-  {U > 2.120}
-  else if(length(samples) == 8)
-  {U > 2.072}
-  else if(length(samples) == 9)
-  {U > 2.035}
-  else if(length(samples) == 10)
-  {U > 2.005}
-  }
+  
+  # Define threshold values based on the number of samples
+  thresholds <- c(2.005, 2.035, 2.072, 2.120, 2.187)
+  threshold <- thresholds[min(length(samples), length(thresholds))]
+  
+  # Check compliance
+  compliance <- U > threshold
+  
+  return(compliance)
+}
 
 #'Phase 2, EN689 2018 - UTL (Upper Tolerance Limit), 95% C.I., 70% C.L.
 #'
@@ -35,7 +35,12 @@ phase2_Uvalue <- function(samples, OEL){
 #' @export
 
 phase2_UTL <- function(samples, OEL) {
+  # Calculate upper tolerance limit (UTL)
   TL <- normtol.int(log(samples), alpha = 0.3, P = 0.95, side = 1)
-  UTL <- TL$`1-sided.upper`
-  ifelse(exp(UTL) > OEL, "TRUE", "FALSE")
+  UTL <- exp(TL$`1-sided.upper`)
+  
+  # Check compliance
+  compliance <- UTL > OEL
+  
+  return(compliance)
 }

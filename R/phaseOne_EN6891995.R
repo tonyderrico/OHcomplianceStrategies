@@ -11,14 +11,19 @@
 #' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-  phase1EN1995_k1 <- function(sample, OEL) {
-    x1 <- sample/OEL
-    if(sample[1] > OEL || x1[1] > 1)
-    {print("NC")}
-    else if(x1[1] <= 0.1)
-    {print("C")}
-    else if(x1[1] <= 1 && x1[1] > 0.1)
-    {print("UC")}}
+phase1EN1995_k1 <- function(sample, OEL) {
+  x1 <- sample / OEL
+  
+  if (sample > OEL || x1 > 1) {
+    result <- "NC"  # Not compliant
+  } else if (x1 <= 0.1) {
+    result <- "C"   # Compliant
+  } else {
+    result <- "UC"  # Uncertain compliance
+  }
+  
+  return(result)
+}
 
 #'Phase 1, EN689 1995  - testing compliance for at least 3 measurements
 #'
@@ -35,14 +40,18 @@
 #' @return Compliance (C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-  phase1EN1995_k <- function(samples, OEL) {
-    x1 <- samples/OEL
-    if(any(samples > OEL) || any(x1 > 1))
-    {print("NC")}
-    else if(any(x1 > 0.25) || geomean(samples) > 0.5)
-    {print("UC")}
-    else if(all(x1 <= 0.25))
-    {print("C")}
-    else if(geomean(samples) <= 0.5)
-    {print("C")}}
+phase1EN1995_k <- function(samples, OEL) {
+  ratios <- samples / OEL
+  
+  if (any(samples > OEL) || any(ratios > 1)) {
+    result <- "NC"  # Not compliant
+  } else if (any(ratios > 0.25) || geomean(samples) > 0.5) {
+    result <- "UC"  # Uncertain compliance
+  } else {
+    result <- "C"   # Compliant
+  }
+  
+  return(result)
+}
+
 

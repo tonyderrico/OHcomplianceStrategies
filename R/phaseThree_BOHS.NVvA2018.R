@@ -9,17 +9,28 @@
 #' @return BW < 0.2totalVariance ("TRUE"), BW > 0.2totalVariance ("FALSE")
 #' @export
 
-
-
-  phase3_BoHS.NvVA <- function(seg, workers, samples) {
-    xA <- lmer(samples~1 + ( 1| workers), data = seg )
-    VCrandom <- VarCorr(xA)
-    vv <- as.data.frame(VCrandom)
-    ww <- vv$vcov[2]
-    bw <- vv$vcov[1]
-    total_variance <- bw + ww
-    ifelse(bw < 0.2*total_variance, "Compliance", "Non-Compliance")
+phase3_BoHS.NvVA <- function(seg, workers, samples) {
+  # Fit linear mixed-effects model
+  model <- lmer(samples ~ 1 + (1 | workers), data = seg)
+  
+  # Extract variance components
+  VC_random <- VarCorr(model)
+  vc_df <- as.data.frame(VC_random)
+  bw <- vc_df$vcov[1]
+  ww <- vc_df$vcov[2]
+  
+  # Calculate total variance
+  total_variance <- bw + ww
+  
+  # Check compliance
+  if (bw < 0.2 * total_variance) {
+    result <- "Compliance"
+  } else {
+    result <- "Non-Compliance"
   }
+  
+  return(result)
+}
 
 #'Phase 3, BOHS/NVVA 2011 - Individual Compliance
 #'
@@ -32,15 +43,36 @@
 #' @export
 
 
- Individual_Compliance <- function(seg, workers, samples, OEL) {
-    M <- seg %>% group_by(workers) %>% summarise(mean = mean(samples))
-    M1 <- mean(M$mean)
-    t <- lmer(samples~1 + ( 1| workers), data = seg )
-    VCrandom <- VarCorr(t)
-    vv <- as.data.frame(VCrandom)
-    wwsd <- sqrt(vv$vcov[2])
-    bwsd <- sqrt(vv$vcov[1])
-    H <- (log(OEL) - (M1 + 1.645*wwsd)) / bwsd
-    IE <- 1 - pnorm(H)
-    ifelse(IE < 0.2, "Compliance", "Non-Compliance")
- }
+Individual_Compliance <- function(seg, workers, samples, OEL) {
+  # Calculate mean samples by workers
+  M <- seg %>% 
+    group_by(workers) %>% 
+    summarise(mean = mean(samples))
+  
+  # Calculate overall mean of samples
+  M1 <- mean(M$mean)
+  
+  # Fit linear mixed-effects model
+  t <- lmer(samples ~ 1 + (1 | workers), data = seg)
+  
+  # Extract variance components
+  VCrandom <- VarCorr(t)
+  vv <- as.data.frame(VCrandom)
+  
+  # Calculate standard deviations
+  wwsd <- sqrt(vv$vcov[2])
+  bwsd <- sqrt(vv$vcov[1])
+  
+  # Calculate compliance index
+  H <- (log(OEL) - (M1 + 1.645 * wwsd)) / bwsd
+  IE <- 1 - pnorm(H)
+  
+  # Determine compliance status
+  if (IE < 0.2) {
+    result <- "Compliance"
+  } else {
+    result <- "Non-Compliance"
+  }
+  
+  return(result)
+}

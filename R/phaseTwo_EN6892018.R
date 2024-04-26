@@ -6,7 +6,7 @@
 #' The U-thresholds integrated in the function are for a maximum of 15 measurements per SEG.
 #'
 #' @param samples measurements of the SEG under assessment from 6 to 15
-#' @param Occupational Exposure Limit of the agent
+#' @param OEL Exposure Limit of the agent
 #' @return U value > ("TRUE") or < ("FALSE)  U thresholds
 #' @export
 

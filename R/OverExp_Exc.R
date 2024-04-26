@@ -1,24 +1,42 @@
 #'OverExposure
 #'
 #' OverExposure Calculation
-#' @param seg measurements and repeats of the SEG under assessment
-#' @param workers workers codes/names/ID
-#' @param samples samples concentrations of the exposed workers
+#' @param seg measurements (with repeated measurements) of the SEG under assessment
+#' @param workers workers codes/ID
+#' @param samples exposure concentrations of workers
 #' @param OEL Occupational Exposure Limit of the agent
 #' @return % of OverExposure
 #' @export
 
 OverExp <- function(seg, workers, samples, OEL) {
-  M <- seg %>% group_by(workers) %>% summarise(mean = mean(samples))
-  M1 <- mean(M$mean)
-  xA <- lmer(samples~1 + ( 1| workers), data = seg)
-  VCrandom <- VarCorr(xA)
-  vv <- as.data.frame(VCrandom)
-  wwsd <- sqrt(vv$vcov[2])
-  bwsd <- sqrt(vv$vcov[1])
-  overexpos <- (log(OEL) - (M1 + 0.5*wwsd)) / bwsd
-  1 - pnorm(overexpos)
-}
+  # Calculate mean concentration samples by workers
+  mean_samples <- seg %>%
+    group_by(workers) %>%
+    summarise(mean_samples = mean(samples)) %>%
+    pull(mean_samples)
+  
+  # Calculate overall mean of samples
+  overall_mean <- mean(mean_samples)
+  
+  # Fit linear mixed-effects model
+  model <- lmer(samples ~ 1 + (1 | workers), data = seg)
+  
+  # Extract variance components using broom
+  VC_random <- tidy(VarCorr(model))
+  
+  # Calculate standard deviations
+  wwsd <- sqrt(VC_random$stddev[2])
+  bwsd <- sqrt(VC_random$stddev[1])
+  
+  # Calculate overexposure
+  overexpos <- (log(OEL) - (overall_mean + 0.5 * wwsd)) / bwsd
+  
+  # Calculate probability of overexposure
+  prob_overexposure <- 1 - pnorm(overexpos)
+  
+  return(prob_overexposure)
+
+  }
 
 #'Exceedance
 #'
@@ -28,9 +46,18 @@ OverExp <- function(seg, workers, samples, OEL) {
 #' @return % of Exceedance
 #' @export
 
-  Exceedance <- function(samples,OEL) {
-    GM <- geomean(samples)
-    GSD <- geosd(samples)
-    Exc <- (log(OEL) - log(GM)) / log(GSD)
-    1 - pnorm(Exc)
-  }
+Exceedance <- function(samples, OEL) {
+  # Calculate geometric mean
+  GM <- exp(mean(log(samples)))
+  
+  # Calculate geometric standard deviation
+  GSD <- exp(sd(log(samples)))
+  
+  # Calculate exceedance
+  Exc <- (log(OEL) - log(GM)) / log(GSD)
+  
+  # Calculate probability of exceedance
+  prob_exceedance <- 1 - pnorm(Exc)
+  
+  return(prob_exceedance)
+}

@@ -19,9 +19,14 @@ phase2_Uvalue <- function(samples, OEL) {
   threshold <- thresholds[min(length(samples), length(thresholds))]
   
   # Check compliance
-  compliance <- U > threshold
+  compliance <- 
+  if (U < threshold) {
+    result <- "Compliant"
+  } else {
+    result <- "Not Compliant"
+  }
   
-  return(compliance)
+  return(result)
 }
 
 #'Phase 2, EN689 2018 - UTL (Upper Tolerance Limit), 95% C.I., 70% C.L.
@@ -40,7 +45,13 @@ phase2_UTL <- function(samples, OEL) {
   UTL <- exp(TL$`1-sided.upper`)
   
   # Check compliance
-  compliance <- UTL > OEL
+  compliance <- 
+  if(UTL < OEL) {
+      result = "Compliant"
+      }
+  else {
+        result = "Not Compliant"
+    }
   
-  return(compliance)
+  return(result)
 }

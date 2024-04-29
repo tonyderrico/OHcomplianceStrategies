@@ -15,11 +15,11 @@ phase1EN1995_k1 <- function(sample, OEL) {
   x1 <- sample / OEL
   
   if (sample > OEL || x1 > 1) {
-    result <- "NC"  # Not compliant
+    result <- "Non Compliant"  # Not compliant
   } else if (x1 <= 0.1) {
-    result <- "C"   # Compliant
+    result <- "Compliant"   # Compliant
   } else {
-    result <- "UC"  # Uncertain compliance
+    result <- "Uncertain Compliance"  # Uncertain compliance
   }
   
   return(result)
@@ -44,11 +44,11 @@ phase1EN1995_k <- function(samples, OEL) {
   ratios <- samples / OEL
   
   if (any(samples > OEL) || any(ratios > 1)) {
-    result <- "NC"  # Not compliant
+    result <- "Not Compliant"  # Not compliant
   } else if (any(ratios > 0.25) || geomean(samples) > 0.5) {
-    result <- "UC"  # Uncertain compliance
+    result <- "Uncertain Compliance"  # Uncertain compliance
   } else {
-    result <- "C"   # Compliant
+    result <- "Compliant"   # Compliant
   }
   
   return(result)

@@ -24,9 +24,9 @@ phase3_BoHS.NvVA <- function(seg, workers, samples) {
   
   # Check compliance
   if (bw < 0.2 * total_variance) {
-    result <- "Compliance"
+    result <- "Compliant"
   } else {
-    result <- "Non-Compliance"
+    result <- "Not compliant"
   }
   
   return(result)
@@ -70,9 +70,9 @@ Individual_Compliance <- function(seg, workers, samples, OEL) {
   
   # Determine compliance status
   if (IE < 0.2) {
-    result <- "Compliance"
+    result <- "Compliant"
   } else {
-    result <- "Non-Compliance"
+    result <- "Not Compliant"
   }
   
   return(result)

@@ -11,8 +11,8 @@
 #' @export
 
 phase1EN2018_k3 <- function(samples, OEL) {
-  compliance <- ifelse(any(samples > OEL), "NC", 
-                       ifelse(any(samples >= 0.1 * OEL), "UC", "C"))
+  compliance <- ifelse(any(samples > OEL), "Not Compliant", 
+                       ifelse(any(samples >= 0.1 * OEL), "Uncertain Compliance", "Compliant"))
   return(compliance)
 }
 
@@ -31,9 +31,9 @@ phase1EN2018_k3 <- function(samples, OEL) {
 phase1EN2018_k4 <- function(samples, OEL) {
   compliance <- switch(
     TRUE,
-    any(samples > OEL), "NC",
-    any(samples >= 0.15 * OEL), "UC",
-    "C"
+    any(samples > OEL), "Not Compliant",
+    any(samples >= 0.15 * OEL), "Uncertain Compliant",
+    "Compliant"
   )
   return(compliance)
 }
@@ -49,11 +49,11 @@ phase1EN2018_k4 <- function(samples, OEL) {
 
 phase1EN2018_k5 <- function(samples, OEL) {
   compliance <- if (any(samples > OEL)) {
-    "NC"  # Not compliant
+    "Not Compliant"  # Not compliant
   } else if (any(samples >= 0.2 * OEL)) {
-    "UC"  # Uncertain compliance
+    "Uncertain Complaince"  # Uncertain compliance
   } else {
-    "C"   # Compliant
+    "Compliant"   # Compliant
   }
   return(compliance)
 }

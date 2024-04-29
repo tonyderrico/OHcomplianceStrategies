@@ -7,7 +7,7 @@
 #'
 #' @param samples measurements of the SEG under assessment from 6 to 15
 #' @param OEL Exposure Limit of the agent
-#' @return U value > ("TRUE") or < ("FALSE)  U thresholds
+#' @return U value > ("Not Compliant") or < ("Compliant")  U thresholds
 #' @export
 
 phase2_Uvalue <- function(samples, OEL) {
@@ -36,7 +36,7 @@ phase2_Uvalue <- function(samples, OEL) {
 #' Contrarly, if the UTL is lower than OEL, the probability of exceedance is acceptable, so there is Compliance.
 #' @param samples at least 6 measurements of the SEG under assessment
 #' @param OEL Occupational Exposure Limit of the agent
-#' @return UTL > OEL ("TRUE") or UTL < OEL ("FALSE")
+#' @return UTL > OEL ("Not Compliant") or UTL < OEL ("Compliant")
 #' @export
 
 phase2_UTL <- function(samples, OEL) {

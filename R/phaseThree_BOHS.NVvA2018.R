@@ -6,7 +6,7 @@
 #' @param seg measurements with repeats of the SEG under assessment
 #' @param samples samples concentrations of the agent
 #' @param workers workers codes/names/ID
-#' @return BW < 0.2totalVariance ("TRUE"), BW > 0.2totalVariance ("FALSE")
+#' @return BW < 0.2totalVariance ("Compliant"), BW > 0.2totalVariance ("Not Compliant")
 #' @export
 
 phase3_BoHS.NvVA <- function(seg, workers, samples) {
@@ -40,7 +40,7 @@ phase3_BoHS.NvVA <- function(seg, workers, samples) {
 #' @param samples samples concentrations of the agent
 #' @param workers workers code/name
 #' @param OEL Occupational Exposure Limit
-#' @return BW < 0.2totalVariance, True or False
+#' @return BW < 0.2totalVariance, Compliant or Not Compliant
 #' @export
 
 

@@ -29,12 +29,14 @@ phase1EN2018_k3 <- function(samples, OEL) {
 #' @export
 
 phase1EN2018_k4 <- function(samples, OEL) {
-  compliance <- switch(
-    TRUE,
-    any(samples > OEL), "Not Compliant",
-    any(samples >= 0.15 * OEL), "Uncertain Compliant",
-    "Compliant"
-  )
+  # Check if any sample exceeds the OEL
+  if (any(samples > OEL)) {
+    compliance <- "Not Compliant"
+  } else if (any(samples >= 0.15 * OEL)) {
+    compliance <- "Uncertain Compliant"
+  } else {
+    compliance <- "Compliant"
+  }
   return(compliance)
 }
 

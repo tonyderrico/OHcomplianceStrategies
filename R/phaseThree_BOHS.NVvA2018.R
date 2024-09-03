@@ -49,7 +49,7 @@ Individual_Compliance <- function(seg, workers, samples, OEL) {
   M <- seg %>% 
     group_by(workers) %>% 
     na.omit() %>%  
-    summarise(mean = mean(samples))
+    summarise(mean = mean(log(samples)))
   
   # Calculate overall mean of samples
   M1 <- mean(M$mean)

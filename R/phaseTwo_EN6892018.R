@@ -39,6 +39,7 @@ phase2_Uvalue <- function(samples, OEL) {
 #' @return UTL > OEL ("Not Compliant") or UTL < OEL ("Compliant")
 #' @export
 
+phase2_UTL()
 phase2_UTL <- function(samples, OEL) {
   # Calculate upper tolerance limit (UTL)
   TL <- normtol.int(log(samples), alpha = 0.3, P = 0.95, side = 1)

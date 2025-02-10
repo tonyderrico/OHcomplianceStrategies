@@ -11,6 +11,9 @@
 #' @export
 
 phase1EN2018_k3 <- function(samples, OEL) {
+    if (length(samples) > 3) {
+    stop("Dataset exceeds three measurements. Function will not run.")
+  }
   compliance <- ifelse(any(samples > OEL), "Not Compliant", 
                        ifelse(any(samples >= 0.1 * OEL), "Uncertain Compliance", "Compliant"))
   return(compliance)
@@ -29,6 +32,9 @@ phase1EN2018_k3 <- function(samples, OEL) {
 #' @export
 
 phase1EN2018_k4 <- function(samples, OEL) {
+    if (length(samples) > 4) {
+    stop("Dataset exceeds three measurements. Function will not run.")
+  }
   # Check if any sample exceeds the OEL
   if (any(samples > OEL)) {
     compliance <- "Not Compliant"
@@ -50,6 +56,9 @@ phase1EN2018_k4 <- function(samples, OEL) {
 #' @export
 
 phase1EN2018_k5 <- function(samples, OEL) {
+    if (length(samples) > 5) {
+    stop("Dataset exceeds three measurements. Function will not run.")
+  }
   compliance <- if (any(samples > OEL)) {
     "Not Compliant"  # Not compliant
   } else if (any(samples >= 0.2 * OEL)) {

@@ -10,7 +10,7 @@ OverExp(seg, workers, samples, OEL)
 \item{seg}{Similarly Exposed Group}
 \item{workers}{Workers ID}
 \item{samples}{Exposure concentrations}
-\item{OEL}
+\item{OEL}{Occupational Exposure Limit}
 }
 \value{numeric outputs
 % of OverExposure

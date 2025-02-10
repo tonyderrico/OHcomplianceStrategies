@@ -11,11 +11,7 @@
 #' @export
 
 phase1EN2018_k3 <- function(samples, OEL) {
-<<<<<<< HEAD
   if (length(samples) > 3) {
-=======
-    if (length(samples) > 3) {
->>>>>>> 10f73d4f5b218fa6e214f1251512fb3f1dbea2a2
     stop("Dataset exceeds three measurements. Function will not run.")
   }
   compliance <- ifelse(any(samples > OEL), "Not Compliant", 
@@ -36,7 +32,6 @@ phase1EN2018_k3 <- function(samples, OEL) {
 #' @export
 
 phase1EN2018_k4 <- function(samples, OEL) {
-<<<<<<< HEAD
   if (length(samples) > 4) {
     stop("Dataset exceeds three measurements. Function will not run.")
   }
@@ -46,19 +41,6 @@ phase1EN2018_k4 <- function(samples, OEL) {
     any(samples >= 0.15 * OEL), "Uncertain Compliant",
     "Compliant"
   )
-=======
-    if (length(samples) > 4) {
-    stop("Dataset exceeds three measurements. Function will not run.")
-  }
-  # Check if any sample exceeds the OEL
-  if (any(samples > OEL)) {
-    compliance <- "Not Compliant"
-  } else if (any(samples >= 0.15 * OEL)) {
-    compliance <- "Uncertain Compliant"
-  } else {
-    compliance <- "Compliant"
-  }
->>>>>>> 10f73d4f5b218fa6e214f1251512fb3f1dbea2a2
   return(compliance)
 }
 
@@ -72,11 +54,7 @@ phase1EN2018_k4 <- function(samples, OEL) {
 #' @export
 
 phase1EN2018_k5 <- function(samples, OEL) {
-<<<<<<< HEAD
   if (length(samples) > 5) {
-=======
-    if (length(samples) > 5) {
->>>>>>> 10f73d4f5b218fa6e214f1251512fb3f1dbea2a2
     stop("Dataset exceeds three measurements. Function will not run.")
   }
   compliance <- if (any(samples > OEL)) {

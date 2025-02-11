@@ -9,8 +9,8 @@
 #' @export
 
 phase2EN689.1995 <- function(samples, OEL) {
-  QN <- qnorm(0.999, log(mean(samples)), log(sd(samples)))
-  QN1 <- qnorm(0.95, log(mean(samples)), log(sd(samples)))
+  QN <- qnorm(0.999, mean(log(samples)), sd(log(samples)))
+  QN1 <- qnorm(0.95, mean(log(samples)), sd(log(samples)))
   if(QN < log(OEL))
   {print("Green Area")}
   else if(QN1 < log(OEL))

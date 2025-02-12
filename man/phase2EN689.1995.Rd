@@ -2,17 +2,20 @@
 % Please edit documentation in R/phaseTwo_EN6891995.R
 \name{phase2EN689.1995}
 \alias{phase2EN689.1995}
-\title{Phase 2 in EN689 1995}
+\title{Phase 2, EN689 1995  - testing compliance exceedance}
 \usage{
 phase2EN689.1995(samples, OEL)
 }
 \arguments{
-\item{samples}{exposure concentrations}
-\item{OEL}{Occupational Exposure Limit}
+\item{OEL}{Occupational Exposure Limit of the agent}
+
+\item{seg}{measurements of the SEG under assessment}
 }
 \value{
 Green Area, Orange Area or Red Area
 }
 \description{
-5 percent exc. is 5 percent probability for OEL exceedance on the values distribution. Green area: less or equal 1 percent of the measurements are higher than OEL. Orange area: less or equal 5 percent of the measurements are higher than OEL. Red Area: More than 5 percent of the measurements are higher than OEL
+The normal distribution of the measurements is operated, and 99.9th percentile and 95th percentile values are observed to assess the possible exceedance of the OEL.
+Compliance or "Green Area" is achieved if the value of the 99,9 the percentile is lower than the OEL, Uncertain Compliance or "Orange Area" is achieved if
+the value of the 95th percentile is lower than the OEL. Non Compliance or "Red Area" is achieved if the OEL is greater than the value of the 95th percentile.
 }

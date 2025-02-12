@@ -7,12 +7,13 @@
 Exceedance(samples, OEL)
 }
 \arguments{
-\item{samples}{exposure concentrations of the SEG under assessment}
-\item{OEL}{Occupational Exposure Limit}
+\item{samples}{measurements of the SEG under assessment}
+
+\item{OEL}{Occupational Exposure Limit of the agent}
 }
 \value{
 % of Exceedance
 }
 \description{
-Probability exceedance of workers exposures/SEGs in log-normal distribution
+Probability of the OEL exceedance of the SEG considered
 }

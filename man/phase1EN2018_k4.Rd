@@ -2,17 +2,22 @@
 % Please edit documentation in R/phaseOne_EN6892018.R
 \name{phase1EN2018_k4}
 \alias{phase1EN2018_k4}
-\title{Phase 1 for four measurements in EN689 2018}
+\title{Phase 1, EN689 2018  - testing compliance for 4 measurements}
 \usage{
 phase1EN2018_k4(samples, OEL)
 }
 \arguments{
-\item{samples}{Four measurements}
-\item{OEL}{Occupational Exposure Limit}
+\item{OEL}{Occupational Exposure Limit of the agent}
+
+\item{x}{Four measurements}
 }
 \value{
 Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 }
 \description{
-Potential compliance, uncertain compliance or non-compliance of a SEG can be evaluated for four measurements. Index calculation is performed (worker measurement/OEL). Compliance is achieved if all of the index of the SEG are below or equal to 0.15 and below the OEL. There is Uncertain Compliance if at least one index is greater than 0.15 but below the OEL. There is Non-Compliance if at least an index is greater than OEL.
+Compliance, uncertain compliance or non-compliance of a SEG can be
+evaluated for four measurements. Compliance is achieved if all of the measurements
+are below or equal to 0.15xOEL. There is Uncertain Compliance if at least a
+measurement is greater than 0.15xOEL but below the OEL. There is Non-Compliance
+if at least a measurement is greater than OEL.
 }

@@ -7,16 +7,17 @@
 OverExp(seg, workers, samples, OEL)
 }
 \arguments{
-\item{seg}{Similarly Exposed Group}
-\item{workers}{Workers ID}
-\item{samples}{Exposure concentrations}
-\item{OEL}{Occupational Exposure Limit}
+\item{seg}{measurements (with repeated measurements) of the SEG under assessment}
+
+\item{workers}{workers codes/ID}
+
+\item{samples}{exposure concentrations of workers}
+
+\item{OEL}{Occupational Exposure Limit of the agent}
 }
-\value{numeric outputs
+\value{
 % of OverExposure
 }
 \description{
-Overexposure is the probability that
-the mean exposures of a randomly selected worker can be greater
-than the OEL.
+OverExposure Calculation
 }

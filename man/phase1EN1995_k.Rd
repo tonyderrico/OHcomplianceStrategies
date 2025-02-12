@@ -2,18 +2,25 @@
 % Please edit documentation in R/phaseOne_EN6891995.R
 \name{phase1EN1995_k}
 \alias{phase1EN1995_k}
-\title{Phase 1, EN689 1995  - testing compliance for 3 or > measurements}
+\title{Phase 1, EN689 1995  - testing compliance for at least 3 measurements}
 \usage{
 phase1EN1995_k(samples, OEL)
 }
 \arguments{
-\item{samples}{3 or > measurements}
+\item{samples}{At least 3 measurements}
 
-\item{OEL}{Occupational Exposure Limit}
+\item{OEL}{Occupational Exposure Limit of the agent}
 }
 \value{
-Compliance ("C"), Ucertainty Compliance ("UC), Non-Compliance ("NC")
+Compliance (C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 }
 \description{
-Potential compliance, uncertain compliance or non-compliance of a SEG can be evaluated for three or more measurements. Index calculation is performed (worker measurement/OEL). Compliance is achieved if all of the index of the SEG are below or equal to 1 and below the OEL, and the GM is below 0.5. There is Uncertain compliance if at least one index is greater than 1 or/and when the GM is greater than 0.5, but all the index are below the OEL. There is Non-Compliance if at least an index is greater than OEL.
+Compliance, uncertain compliance or non-compliance can be evaluated
+for at least three measurements. Calculation of exposure indeces is performed (worker measurement/OEL).
+Compliance is achieved if all indeces are below or equal to 0.25.
+If at least an index is greater than 0.25 but all indeces are lower/equal than 1 and the
+geometric mean of the measurements is lower/equal than 0.5, Compliance is accomplished.
+Contrarly, there is no decision ("UC").
+There is Non-Compliance if at least a measurement is greater than the OEL
+and/or if at least an exposure index is greater than 1.
 }

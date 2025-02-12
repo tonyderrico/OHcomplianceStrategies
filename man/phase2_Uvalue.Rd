@@ -2,17 +2,21 @@
 % Please edit documentation in R/phaseTwo_EN6892018.R
 \name{phase2_Uvalue}
 \alias{phase2_Uvalue}
-\title{Phase 2 in EN689 2018}
+\title{Phase 2, BOHS/NVvA & EN689 2018  - U test}
 \usage{
 phase2_Uvalue(samples, OEL)
 }
 \arguments{
-\item{samples}{from 6 to 10 measurements}
-\item{OEL}{Occupational Exposure Limit}
+\item{samples}{measurements of the SEG under assessment from 6 to 15}
+
+\item{OEL}{Exposure Limit of the agent}
 }
 \value{
-U value > or < than U thresholds established (Check table online or EN689:2018 Annex F)
+U value > ("Not Compliant") or < ("Compliant")  U thresholds
 }
 \description{
-Mann–Whitney U test is a nonparametric test of the null hypothesis measuring that the probability of the SEGs are not greater than fixed groups and values established to reach the compliance.
+Mann-Whitney U test (70% Confidence) is operated to evaluate SEG compliance based on the number of measurements performed.
+If the U value calculated (pg. 42, EN689 2018) is greater than U threshold established in the Mann-Whitney U table,
+there is Compliance, differently, if the U value is lower, there is Non-Compliance.
+The U-thresholds integrated in the function are for a maximum of 15 measurements per SEG.
 }

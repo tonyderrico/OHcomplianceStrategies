@@ -2,17 +2,21 @@
 % Please edit documentation in R/phaseTwo_EN6892018.R
 \name{phase2_UTL}
 \alias{phase2_UTL}
-\title{Phase 2/Statistical test in EN689:2018}
+\title{Phase 2, EN689 2018 - UTL (Upper Tolerance Limit), 95% C.I., 70% C.L.}
 \usage{
 phase2_UTL(samples, OEL)
 }
 \arguments{
-\item{samples}{exposure concentrations}
-\item{OEL}{Occupational Exposure Limit}
+\item{samples}{at least 6 measurements of the SEG under assessment}
+
+\item{OEL}{Occupational Exposure Limit of the agent}
 }
 \value{
-UTL > OEL? TRUE or FALSE
+UTL > OEL ("Not Compliant") or UTL < OEL ("Compliant")
 }
 \description{
-Upper tolerance limit value with 95 percent confidence interval and 70 percent confidence level is the threshold probability parameter for OEL exceedance on the log-normal distribution.
+The test is based on the comparison of the UTL having 95% P.C. with 70% Confidence Level with the OEL. 
+If the UTL is greater than OEL, there is exceedance and so Non-Compliance.
+Contrarily, if the UTL is lower than OEL, the probability of exceedance is acceptable, 
+so there is Compliance.
 }

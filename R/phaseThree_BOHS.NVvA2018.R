@@ -10,6 +10,9 @@
 #' @export
 
 phase3_BoHS.NvVA <- function(seg, workers, samples) {
+  if (length(samples) < 6) {
+    stop("Error: At least 6 measurements are required.")
+  }
   # Fit linear mixed-effects model
   model <- lmer(samples ~ 1 + (1 | workers), data = seg)
   

@@ -11,6 +11,9 @@
 #' @export
 
 phase2_Uvalue <- function(samples, OEL) {
+  if (length(samples) < 6) {
+    stop("Error: At least 6 measurements are required.")
+  }
   # Calculate U-value
   U <- (log(OEL) - log(geomean(samples))) / log(geosd(samples))
   
@@ -40,6 +43,9 @@ phase2_Uvalue <- function(samples, OEL) {
 #' @export
 
 phase2_UTL <- function(samples, OEL) {
+  if (length(samples) < 6) {
+    stop("Error: At least 6 measurements are required.")
+  }
   # Calculate upper tolerance limit (UTL)
   TL <- normtol.int(log(samples), alpha = 0.3, P = 0.95, side = 1)
   UTL <- exp(TL$`1-sided.upper`)

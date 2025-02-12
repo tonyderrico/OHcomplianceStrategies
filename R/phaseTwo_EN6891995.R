@@ -9,6 +9,9 @@
 #' @export
 
 phase2EN689.1995 <- function(samples, OEL) {
+  if (length(samples) < 6) {
+    stop("Error: At least 6 measurements are required.")
+  }
   QN <- qnorm(0.999, mean(log(samples)), sd(log(samples)))
   QN1 <- qnorm(0.95, mean(log(samples)), sd(log(samples)))
   if(QN < log(OEL))

@@ -41,7 +41,7 @@ phase1EN1995_k1 <- function(measurements, OEL) {
 #' @export
 
 phase1EN1995_k <- function(measurements, OEL) {
-  ratios <- samples / OEL
+  ratios <- measurements / OEL
   
   if (any(measurements > OEL) || any(ratios > 1)) {
     result <- "Not Compliant"  # Not compliant

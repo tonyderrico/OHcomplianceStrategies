@@ -2,21 +2,27 @@
 % Please edit documentation in R/phaseTwo_EN6892018.R
 \name{phase2_UTL}
 \alias{phase2_UTL}
-\title{Phase 2, EN689 2018 - UTL (Upper Tolerance Limit), 95% C.I., 70% C.L.}
+\title{Phase 2, EN689 2018 - UTLv (Upper Tolerance Limit value), 95% CI, 70% CL}
 \usage{
 phase2_UTL(samples, OEL)
 }
 \arguments{
-\item{samples}{at least 6 measurements of the SEG under assessment}
+\item{samples}{Numeric vector. At least 6 exposure measurements from the SEG under assessment.}
 
-\item{OEL}{Occupational Exposure Limit of the agent}
+\item{OEL}{Numeric. The Occupational Exposure Limit of the agent.}
 }
 \value{
-UTL > OEL ("Not Compliant") or UTL < OEL ("Compliant")
+A character string:
+- `"Not Compliant"` if `UTL > OEL`
+- `"Compliant"` if `UTL < OEL`
 }
 \description{
-The test is based on the comparison of the UTL having 95% P.C. with 70% Confidence Level with the OEL. 
-If the UTL is greater than OEL, there is exceedance and so Non-Compliance.
-Contrarily, if the UTL is lower than OEL, the probability of exceedance is acceptable, 
-so there is Compliance.
+This function evaluates compliance with the Occupational Exposure Limit (OEL) 
+based on the Upper Tolerance Limit value (UTLv), calculated with a 95% Percentile 
+Confidence Level and a 70% Confidence Level.
+}
+\details{
+The test compares the UTLv with the OEL:
+- If **UTL > OEL**, there is exceedance → **"Not Compliant"**.
+- If **UTL < OEL**, the probability of exceedance is acceptable → **"Compliant"**.
 }

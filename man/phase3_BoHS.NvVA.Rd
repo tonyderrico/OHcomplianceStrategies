@@ -17,7 +17,7 @@ phase3_BoHS.NvVA(seg, workers, samples)
 BW < 0.2totalVariance ("Compliant"), BW > 0.2totalVariance ("Not Compliant")
 }
 \description{
-REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
+Linear Mixed models using REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
 and total variance. The Compliance is achieved if the between worker variance is lower
-than 0.2 of the total variance. Contrarly, there is Non-Compliance.
+than 0.2 of the total variance. Contrarily, there is Non-Compliance.
 }

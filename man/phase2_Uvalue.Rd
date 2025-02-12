@@ -2,21 +2,28 @@
 % Please edit documentation in R/phaseTwo_EN6892018.R
 \name{phase2_Uvalue}
 \alias{phase2_Uvalue}
-\title{Phase 2, BOHS/NVvA & EN689 2018  - U test}
+\title{Phase 2, BOHS/NVvA & EN689 2018 - U test}
 \usage{
 phase2_Uvalue(samples, OEL)
 }
 \arguments{
-\item{samples}{measurements of the SEG under assessment from 6 to 15}
+\item{samples}{Numeric vector. Measurements of the SEG under assessment (between 6 and 15).}
 
-\item{OEL}{Exposure Limit of the agent}
+\item{OEL}{Numeric. The Occupational Exposure Limit of the agent.}
 }
 \value{
-U value > ("Not Compliant") or < ("Compliant")  U thresholds
+A character string:
+- "Compliant" if `U < threshold`
+- "Not Compliant" if `U > threshold`
 }
 \description{
-Mann-Whitney U test (70% Confidence) is operated to evaluate SEG compliance based on the number of measurements performed.
-If the U value calculated (pg. 42, EN689 2018) is greater than U threshold established in the Mann-Whitney U table,
-there is Compliance, differently, if the U value is lower, there is Non-Compliance.
-The U-thresholds integrated in the function are for a maximum of 15 measurements per SEG.
+This function applies the Mann-Whitney U test (70% Confidence) to evaluate SEG compliance 
+based on the number of measurements performed.
+}
+\details{
+The test compares the calculated U value (pg. 42, EN689 2018) with the U threshold from the Mann-Whitney U table:
+- If **U > OEL**, there is **Compliance**.
+- If **U < OEL**, there is **Non-Compliance**.
+
+The function includes U-thresholds for a maximum of 15 measurements per SEG.
 }

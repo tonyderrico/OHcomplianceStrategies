@@ -4,10 +4,10 @@
 \alias{phase2_Uvalue}
 \title{Phase 2, BOHS/NVvA & EN689 2018 - U test}
 \usage{
-phase2_Uvalue(samples, OEL)
+phase2_Uvalue(measurements, OEL)
 }
 \arguments{
-\item{samples}{Numeric vector. Measurements of the SEG under assessment (between 6 and 15).}
+\item{measurements}{Numeric vector. Measurements of the SEG under assessment (between 6 and 15).}
 
 \item{OEL}{Numeric. The Occupational Exposure Limit of the agent.}
 }

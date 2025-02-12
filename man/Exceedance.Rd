@@ -4,15 +4,15 @@
 \alias{Exceedance}
 \title{Exceedance}
 \usage{
-Exceedance(samples, OEL)
+Exceedance(measurements, OEL)
 }
 \arguments{
-\item{samples}{measurements of the SEG under assessment}
+\item{measurements}{measurements of the SEG under assessment}
 
 \item{OEL}{Occupational Exposure Limit of the agent}
 }
 \value{
-% of Exceedance
+probability of Exceedance
 }
 \description{
 Probability of the OEL exceedance of the SEG considered

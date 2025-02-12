@@ -2,12 +2,12 @@
 % Please edit documentation in R/phaseTwo_EN6892018.R
 \name{phase2_UTL}
 \alias{phase2_UTL}
-\title{Phase 2, EN689 2018 - UTLv (Upper Tolerance Limit value), 95% CI, 70% CL}
+\title{Phase 2, EN689 2018 - UTLv (Upper Tolerance Limit value)}
 \usage{
-phase2_UTL(samples, OEL)
+phase2_UTL(measurements, OEL)
 }
 \arguments{
-\item{samples}{Numeric vector. At least 6 exposure measurements from the SEG under assessment.}
+\item{measurements}{Numeric vector. At least 6 exposure measurements from the SEG under assessment.}
 
 \item{OEL}{Numeric. The Occupational Exposure Limit of the agent.}
 }

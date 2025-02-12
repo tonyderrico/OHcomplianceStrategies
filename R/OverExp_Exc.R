@@ -1,25 +1,25 @@
 #'OverExposure
 #'
 #' OverExposure Calculation
-#' @param seg measurements (with repeated measurements) of the SEG under assessment
+#' @param measurements measurements (with repeated measurements) of the SEG under assessment
 #' @param workers workers codes/ID
 #' @param samples exposure concentrations of workers
 #' @param OEL Occupational Exposure Limit of the agent
-#' @return % of OverExposure
+#' @return probability of OverExposure
 #' @export
 
-OverExp <- function(seg, workers, samples, OEL) {
+OverExp <- function(measurements, workers, samples, OEL) {
   # Calculate mean concentration samples by workers
-  mean_samples <- seg %>%
+  mean_samples <- measurements %>%
     group_by(workers) %>%
-    summarise(mean_samples = mean(samples)) %>%
+    summarise(mean_samples = mean(measurements)) %>%
     pull(mean_samples)
   
   # Calculate overall mean of samples
   overall_mean <- mean(mean_samples)
   
   # Fit linear mixed-effects model
-  model <- lmer(samples ~ 1 + (1 | workers), data = seg)
+  model <- lmer(measurements ~ 1 + (1 | workers), data = seg)
   
   # Extract variance components using broom
   VC_random <- tidy(VarCorr(model))
@@ -41,17 +41,17 @@ OverExp <- function(seg, workers, samples, OEL) {
 #'Exceedance
 #'
 #' Probability of the OEL exceedance of the SEG considered
-#' @param samples measurements of the SEG under assessment
+#' @param measurements measurements of the SEG under assessment
 #' @param OEL Occupational Exposure Limit of the agent 
-#' @return % of Exceedance
+#' @return probability of Exceedance
 #' @export
 
-Exceedance <- function(samples, OEL) {
+Exceedance <- function(measurements, OEL) {
   # Calculate geometric mean
-  GM <- exp(mean(log(samples)))
+  GM <- exp(mean(log(measurements)))
   
   # Calculate geometric standard deviation
-  GSD <- exp(sd(log(samples)))
+  GSD <- exp(sd(log(measurements)))
   
   # Calculate exceedance
   Exc <- (log(OEL) - log(GM)) / log(GSD)

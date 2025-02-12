@@ -4,10 +4,10 @@
 \alias{phase1EN1995_k}
 \title{Phase 1, EN689 1995  - testing compliance for at least 3 measurements}
 \usage{
-phase1EN1995_k(samples, OEL)
+phase1EN1995_k(measurements, OEL)
 }
 \arguments{
-\item{samples}{At least 3 measurements}
+\item{measurements}{At least 3 measurements}
 
 \item{OEL}{Occupational Exposure Limit of the agent}
 }

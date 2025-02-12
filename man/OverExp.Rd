@@ -4,10 +4,10 @@
 \alias{OverExp}
 \title{OverExposure}
 \usage{
-OverExp(seg, workers, samples, OEL)
+OverExp(measurements, workers, samples, OEL)
 }
 \arguments{
-\item{seg}{measurements (with repeated measurements) of the SEG under assessment}
+\item{measurements}{measurements (with repeated measurements) of the SEG under assessment}
 
 \item{workers}{workers codes/ID}
 
@@ -16,7 +16,7 @@ OverExp(seg, workers, samples, OEL)
 \item{OEL}{Occupational Exposure Limit of the agent}
 }
 \value{
-% of OverExposure
+probability of OverExposure
 }
 \description{
 OverExposure Calculation

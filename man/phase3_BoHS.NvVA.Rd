@@ -4,14 +4,14 @@
 \alias{phase3_BoHS.NvVA}
 \title{Phase 3, BOHS/NvVA 2011  - Between Worker Variance}
 \usage{
-phase3_BoHS.NvVA(seg, workers, samples)
+phase3_BoHS.NvVA(seg, workers, measurements)
 }
 \arguments{
-\item{seg}{measurements with repeats of the SEG under assessment}
+\item{seg}{data of SEG under assessment}
 
 \item{workers}{workers codes/names/ID}
 
-\item{samples}{samples concentrations of the agent}
+\item{measurements}{samples concentrations of the agent}
 }
 \value{
 BW < 0.2totalVariance ("Compliant"), BW > 0.2totalVariance ("Not Compliant")

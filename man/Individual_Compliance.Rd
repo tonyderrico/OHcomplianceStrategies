@@ -4,14 +4,14 @@
 \alias{Individual_Compliance}
 \title{Phase 3, BOHS/NVVA 2011 - Individual Compliance}
 \usage{
-Individual_Compliance(seg, workers, samples, OEL)
+Individual_Compliance(seg, workers, measurements, OEL)
 }
 \arguments{
-\item{seg}{measurements with repeats of the SEG under assessment}
+\item{seg}{data of the SEG under assessment}
 
 \item{workers}{workers code/name}
 
-\item{samples}{samples concentrations of the agent}
+\item{measurements}{samples concentrations of the agent}
 
 \item{OEL}{Occupational Exposure Limit}
 }

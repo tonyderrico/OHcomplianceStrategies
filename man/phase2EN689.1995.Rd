@@ -4,12 +4,12 @@
 \alias{phase2EN689.1995}
 \title{Phase 2, EN689 1995  - testing compliance exceedance}
 \usage{
-phase2EN689.1995(samples, OEL)
+phase2EN689.1995(measurements, OEL)
 }
 \arguments{
-\item{OEL}{Occupational Exposure Limit of the agent}
+\item{measurements}{measurements of the SEG under assessment}
 
-\item{seg}{measurements of the SEG under assessment}
+\item{OEL}{Occupational Exposure Limit of the agent}
 }
 \value{
 Green Area, Orange Area or Red Area

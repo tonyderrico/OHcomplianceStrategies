@@ -1,8 +1,8 @@
 #'Phase 3, BOHS/NvVA 2011  - Between Worker Variance
 #'
-#' REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
+#' Linear Mixed models using REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
 #' and total variance. The Compliance is achieved if the between worker variance is lower
-#' than 0.2 of the total variance. Contrarly, there is Non-Compliance.
+#' than 0.2 of the total variance. Contrarily, there is Non-Compliance.
 #' @param seg measurements with repeats of the SEG under assessment
 #' @param samples samples concentrations of the agent
 #' @param workers workers codes/names/ID

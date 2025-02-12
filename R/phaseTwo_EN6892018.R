@@ -1,19 +1,27 @@
-#'Phase 2, BOHS/NVvA & EN689 2018  - U test
+#' Phase 2, BOHS/NVvA & EN689 2018 - U test
 #'
-#' Mann-Whitney U test (70% Confidence) is operated to evaluate SEG compliance based on the number of measurements performed.
-#' If the U value calculated (pg. 42, EN689 2018) is greater than U threshold established in the Mann-Whitney U table,
-#' there is Compliance, differently, if the U value is lower, there is Non-Compliance.
-#' The U-thresholds integrated in the function are for a maximum of 15 measurements per SEG.
+#' This function applies the Mann-Whitney U test (70% Confidence) to evaluate SEG compliance 
+#' based on the number of measurements performed.
+#' 
+#' The test compares the calculated U value (pg. 42, EN689 2018) with the U threshold from the Mann-Whitney U table:
+#' - If **U > OEL**, there is **Compliance**.
+#' - If **U < OEL**, there is **Non-Compliance**.
+#' 
+#' The function includes U-thresholds for a maximum of 15 measurements per SEG.
 #'
-#' @param samples measurements of the SEG under assessment from 6 to 15
-#' @param OEL Exposure Limit of the agent
-#' @return U value > ("Not Compliant") or < ("Compliant")  U thresholds
+#' @param samples Numeric vector. Measurements of the SEG under assessment (between 6 and 15).
+#' @param OEL Numeric. The Occupational Exposure Limit of the agent.
+#' 
+#' @return A character string:
+#' - "Compliant" if `U < threshold`
+#' - "Not Compliant" if `U > threshold`
+#'
 #' @export
-
 phase2_Uvalue <- function(samples, OEL) {
   if (length(samples) < 6) {
     stop("Error: At least 6 measurements are required.")
   }
+  
   # Calculate U-value
   U <- (log(OEL) - log(geomean(samples))) / log(geosd(samples))
   
@@ -22,7 +30,6 @@ phase2_Uvalue <- function(samples, OEL) {
   threshold <- thresholds[min(length(samples), length(thresholds))]
   
   # Check compliance
-  compliance <- 
   if (U < threshold) {
     result <- "Compliant"
   } else {
@@ -32,34 +39,39 @@ phase2_Uvalue <- function(samples, OEL) {
   return(result)
 }
 
-#'Phase 2, EN689 2018 - UTL (Upper Tolerance Limit), 95% C.I., 70% C.L.
+#' Phase 2, EN689 2018 - UTLv (Upper Tolerance Limit value), 95% CI, 70% CL
 #'
-#' The test is based on the comparison of the UTL having 95% P.C. with 70% Confidence Level with the OEL. 
-#' If the UTL is greater than OEL, there is exceedance and so Non-Compliance.
-#' Contrarily, if the UTL is lower than OEL, the probability of exceedance is acceptable, 
-#' so there is Compliance.
+#' This function evaluates compliance with the Occupational Exposure Limit (OEL) 
+#' based on the Upper Tolerance Limit value (UTLv), calculated with a 95% Percentile 
+#' Confidence Level and a 70% Confidence Level.
 #' 
-#' @param samples at least 6 measurements of the SEG under assessment
-#' @param OEL Occupational Exposure Limit of the agent
-#' @return UTL > OEL ("Not Compliant") or UTL < OEL ("Compliant")
+#' The test compares the UTLv with the OEL:
+#' - If **UTL > OEL**, there is exceedance → **"Not Compliant"**.
+#' - If **UTL < OEL**, the probability of exceedance is acceptable → **"Compliant"**.
+#' 
+#' @param samples Numeric vector. At least 6 exposure measurements from the SEG under assessment.
+#' @param OEL Numeric. The Occupational Exposure Limit of the agent.
+#' 
+#' @return A character string:
+#' - `"Not Compliant"` if `UTL > OEL`
+#' - `"Compliant"` if `UTL < OEL`
+#' 
 #' @export
-
 phase2_UTL <- function(samples, OEL) {
   if (length(samples) < 6) {
     stop("Error: At least 6 measurements are required.")
   }
+  
   # Calculate upper tolerance limit (UTL)
   TL <- normtol.int(log(samples), alpha = 0.3, P = 0.95, side = 1)
   UTL <- exp(TL$`1-sided.upper`)
   
   # Check compliance
-  compliance <- 
-  if(UTL < OEL) {
-      result = "Compliant"
-      }
-  else {
-        result = "Not Compliant"
-    }
+  if (UTL < OEL) {
+    result <- "Compliant"
+  } else {
+    result <- "Not Compliant"
+  }
   
   return(result)
 }

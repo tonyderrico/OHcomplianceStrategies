@@ -1,59 +1,71 @@
 ---
-title: "R Package: Compliance Strategies for Occupational Airborne Exposures"
-author: "A.d'Errico (Toni) - postDoc in the occupational health group at IRAS - Utrecht University"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{ComplianceStrategies_R_package_guide}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: "R Package: compliance strategies to test airborne exposures at work"
+author:
+  - name: Antonio d'Errico (Toni)
+    affiliation: Institute for Risk Assessment Sciences, Utrecht University, Utrecht, The Netherlands
+    orcid: 0000-0001-9805-600X
+    email: a.derrico2@uu.nl
+date: today
+format: html
 ---
 
 # Introduction
 
-The **EN689:1995** and **EN689:2018** are the European standards used to assess the compliance of similarly exposed groups (**SEGs**) of workers with airborne substance regulations and to evaluate worker exposures against occupational exposure limit values (**OELs**).
+The **Compliance Strategies for Occupational Airborne Exposures** package provides methods to assess the compliance of similarly exposed groups (**SEGs**) of workers with European exposure regulations. These strategies are derived from the following standards:
 
-The **"Preliminary Test"** and **"Statistical Test"** are two assessment methods based on the number of measurements collected in the workplace. These tests are included in both EN689 standards and are implemented in this package as **"Phase One"** and **"Phase Two,"** respectively.
+-   **EN689:1995** and **EN689:2018** for the assessment of airborne substance exposure and Occupational Exposure Limit (**OEL**) compliance.
+-   **BOHS-NVvA (2011)** for individual and between-worker compliance.
 
-The **BOHS-NVvA (2011)** outlines the **"Individual Compliance Test"** and the **"Between-Worker Variance Test"** to evaluate exposure compliance while accounting for temporal variability in (average) exposure within and between workers in a SEG. These are implemented in the package as the functions **"Phase3"** and **"Individual Compliance."**
+## Application
 
-Additionally, calculations for **overexposure** and **exceedance** have been integrated into the package.
+The package includes several compliance tests and calculations for overexposure and exceedance, including:
 
-## Package Dependencies  
-This package relies on the following R packages:  
-- **tolerance**  
-- **lme4**  
-- **dplyr**  
-- **FSA**  
+-   **Phase One**: **Preliminary Test** and **Statistical Test** (EN689 standards)
+-   **Phase Two**: **Individual Compliance** and **Between-Worker Variance** (BOHS-NVvA)
+-   **Phase Three**: Additional tests to evaluate compliance with more detailed statistical models.
 
-# Background  
+## ShinyApp
 
-#### **EN689 Preliminary Test**  
-Equations comparing exposure concentrations with the **OEL** are reported in **Annex C of EN689:1995** and **Section 5.5.2 of EN689:2018**.
+The app allows you to assess compliance strategies for testing workers' exposure to airborne substances against OELs.
 
-#### **EN689 Statistical Test**  
-Statistical models are described in **Annex D of EN689:1995** and **Annex F of EN689:2018**.  
-The statistical principle of **EN689:1995** was partially modified to compare the two standards:  
-- The conventional **< 5% probability (orange area)** and **< 0.01% probability (green area)** of exceeding the **OEL** can be used to determine **compliance** or **non-compliance** of SEGs over lognormal distributions. A minimum of **six measurements per SEG** is required.
+[Visit the Shiny App](https://antonioderrico.shinyapps.io/complianceStrategiesShinyApp/)
 
-#### **BOHS-NVvA Individual Compliance Test**  
-In **Chapter 3 of the BOHS-NVvA guidance**, **analysis of variance** is used to determine the variability of individuals’ exposures within a SEG. This allows testing **compliance of an individual worker’s exposure** with the OEL.  
+# Background
 
-To compare the **individual compliance test** with the statistical tests of the EN689s, a minimum of **six measurements per SEG**, with at least **one worker having repeated measurements**, was considered.
+The tests included in this package are based on the following methods:
 
-## Installation  
+### EN689:1995 Preliminary Test
 
-To install the latest version from GitHub:
+-   Compares exposure concentrations to OEL.
+-   Determination of compliance or uncertainty based on exposure indices and number of measurements.
 
-```r
+### EN689:2018 Statistical Test
+
+-   Determines compliance based on the distribution of exposure measurements.
+-   Includes probability calculations for compliance (e.g., **\< 5% probability** for compliance).
+
+### BOHS-NVvA Individual Compliance Test
+
+-   Uses analysis of variance to test if individual workers’ exposure exceeds the OEL.
+
+# Package Dependencies
+
+This package relies on the following R packages: - **tolerance** - **lme4** - **dplyr** - **FSA**
+
+# Installation
+
+To install the latest version from GitHub, use the following command:
+
+``` r
 install.packages("devtools")
 devtools::install_github("tonyderrico/OHcomplianceStrategies")
 ```
 
 ## Functions Overview
+
 ### Phase 1 - EN689:1995
 
-```r
+``` r
 #' Phase 1, EN689 1995 - Testing Compliance for One Measurement
 #'
 #' Compliance, uncertain compliance, or non-compliance can be evaluated
@@ -71,7 +83,7 @@ devtools::install_github("tonyderrico/OHcomplianceStrategies")
 phase1EN1995_k1 <- function(measurements, OEL)
 ```
 
-```r
+``` r
 #'Phase 1, EN689 1995  - testing compliance for at least Three measurements
 #'
 #'Compliance, uncertain compliance or non-compliance can be evaluated
@@ -89,9 +101,10 @@ phase1EN1995_k1 <- function(measurements, OEL)
 
 phase1EN1995_k3 <- function(measurements, OEL)
 ```
+
 ### Phase 1 - EN689:2018
 
-```r
+``` r
 #'Phase 1, EN689 2018  - testing compliance for 3 measurements
 #'
 #'Compliance, uncertain compliance or non-compliance of a SEG can be
@@ -107,7 +120,7 @@ phase1EN1995_k3 <- function(measurements, OEL)
 phase1EN2018_k3 <- function(measurements, OEL)
 ```
 
-```r
+``` r
 #'Phase 1, EN689 2018  - testing compliance for 4 measurements
 #'
 #'Compliance, uncertain compliance or non-compliance of a SEG can be
@@ -123,13 +136,13 @@ phase1EN2018_k3 <- function(measurements, OEL)
 phase1EN2018_k4 <- function(measurements, OEL)
 ```
 
-```r
+``` r
 #'Phase 1, EN689 2018  - testing compliance for 5 measurements
 #'
 #'Compliance, uncertain compliance or non-compliance of a SEG can be evaluated for five measurements. 
-Compliance is achieved if all of the measurements are below or equal to 0.2xOEL. 
-There is Uncertain Compliance if at least a measurement is greater than 0.2xOEL but below the OEL. 
-There is Non-Compliance if at least a measurement is greater than OEL.
+#'Compliance is achieved if all of the measurements are below or equal to 0.2xOEL. 
+#'There is Uncertain Compliance if at least a measurement is greater than 0.2xOEL but below the OEL. 
+#'There is Non-Compliance if at least a measurement is greater than OEL.
 #' @param measurements Five measurements 
 #' @param OEL Occupational Exposure Limit of the agent
 #' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
@@ -140,7 +153,7 @@ phase1EN2018_k5 <- function(measurements, OEL)
 
 ### Phase 2 - EN689:1995
 
-```r
+``` r
 #'Phase 2, EN689 1995  - testing compliance exceedance
 #'
 #' The normal distribution of the measurements is operated, and 99.9th percentile and 95th percentile values are observed to assess 
@@ -159,7 +172,7 @@ phase2EN689.1995 <- function(measurements, OEL)
 
 ### Phase 2 - EN689:2018
 
-```r
+``` r
 #' Phase 2, EN689 2018 - UTLv (Upper Tolerance Limit value)
 #' 
 #' This function evaluates compliance with the Occupational Exposure Limit (OEL) 
@@ -183,7 +196,7 @@ phase2_UTL <- function(measurements, OEL)
 
 ### Phase 2 - BOHS/NVvA 2011
 
-```r
+``` r
 #' Phase 2, BOHS/NVvA & EN689 2018 - U test
 #'
 #' This function applies the Mann-Whitney U test (70% Confidence) to evaluate SEG compliance 
@@ -206,9 +219,9 @@ phase2_UTL <- function(measurements, OEL)
 phase2_Uvalue <- function(measurements, OEL)
 ```
 
-## Phase 3 - BOHS/NVvA 2011
+### Phase 3 - BOHS/NVvA 2011
 
-```r
+``` r
 #'Phase 3, BOHS/NvVA 2011  - Between Worker Variance
 #'
 #' Linear Mixed models using REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
@@ -223,7 +236,7 @@ phase2_Uvalue <- function(measurements, OEL)
 phase3_BoHS.NvVA <- function(seg, workers, measurements)
 ```
 
-```r
+``` r
 #'Phase 3, BOHS/NVVA 2011 - Individual Compliance
 #'
 #' Individual Compliance is achieved when there is less than 20% probability that
@@ -239,4 +252,8 @@ phase3_BoHS.NvVA <- function(seg, workers, measurements)
 Individual_Compliance <- function(seg, workers, measurements, OEL) 
 ```
 
+### for possible applications, you could read:
 
+d'Errico et al., (2022): Is the New EN689 a Better Standard to Test Compliance With Occupational Exposure Limits in the Workplace? https://doi.org/10.1093/annweh/wxab111
+
+d'Errico et al., (2025): Occupational exposure to respirable and inhalable dust and its components in a Nicaraguan sugarcane plantation https://doi.org/10.1136/oemed-2024-109604

@@ -15,15 +15,15 @@ phase2EN689.1995 <- function(measurements, OEL) {
   }
   
   # Calculate log-normal percentiles
-  QN <- qnorm(0.999, mean(log(measurements)), sd(log(measurements)))  # 99.9th percentile
-  QN1 <- qnorm(0.95, mean(log(measurements)), sd(log(measurements)))  # 95th percentile
+  QN <- exp(qnorm(0.999, mean(log(measurements)), sd(log(measurements))))  # 99.9th percentile
+  QN1 <- exp(qnorm(0.95, mean(log(measurements)), sd(log(measurements))))  # 95th percentile
   
   # Classification logic
-  if (log(OEL) > QN) {
+  if (OEL > QN) {
     return("Green Area")
-  } else if (log(OEL) > QN1 && log(OEL) < QN) {
+  } else if (OEL > QN1 && OEL < QN) {
     return("Orange Area")
-  } else if (log(OEL) < QN1) {
+  } else if (OEL < QN1) {
     return("Red Area")
   } else {
     return("Error in classification")

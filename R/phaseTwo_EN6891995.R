@@ -12,11 +12,19 @@ phase2EN689.1995 <- function(measurements, OEL) {
   if (length(measurements) < 6) {
     stop("Error: At least 6 measurements are required.")
   }
-  QN <- qnorm(0.999, mean(log(measurements)), sd(log(measurements)))
-  QN1 <- qnorm(0.95, mean(log(measurements)), sd(log(measurements)))
-  if(QN < log(OEL))
-  {print("Green Area")}
-  else if(QN1 < log(OEL))
-  {print("Orange Area")}
-  else if(QN1 > log(OEL))
-  {print("Red Area")}}
+  
+  # Calculate log-normal percentiles
+  QN <- qnorm(0.999, mean(log(measurements)), sd(log(measurements)))  # 99.9th percentile
+  QN1 <- qnorm(0.95, mean(log(measurements)), sd(log(measurements)))  # 95th percentile
+  
+  # Classification logic
+  if (QN < log(OEL)) {
+    return("Green Area")
+  } else if (QN1 < log(OEL) && log(OEL) < QN) {
+    return("Orange Area")
+  } else if (log(OEL) > QN && log(OEL) > QN1) {
+    return("Red Area")
+  } else {
+    return("Error in classification")
+  }
+}

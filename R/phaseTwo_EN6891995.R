@@ -22,7 +22,7 @@ phase2EN689.1995 <- function(measurements, OEL) {
     return("Green Area")
   } else if (QN1 < log(OEL) && log(OEL) < QN) {
     return("Orange Area")
-  } else if (log(OEL) > QN && log(OEL) > QN1) {
+  } else if (log(OEL) > QN1) {
     return("Red Area")
   } else {
     return("Error in classification")

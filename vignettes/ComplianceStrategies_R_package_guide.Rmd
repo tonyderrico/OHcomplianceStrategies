@@ -1,0 +1,242 @@
+---
+title: "R Package: Compliance Strategies for Occupational Airborne Exposures"
+author: "A.d'Errico (Toni) - postDoc in the occupational health group at IRAS - Utrecht University"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ComplianceStrategies_R_package_guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+The **EN689:1995** and **EN689:2018** are the European standards used to assess the compliance of similarly exposed groups (**SEGs**) of workers with airborne substance regulations and to evaluate worker exposures against occupational exposure limit values (**OELs**).
+
+The **"Preliminary Test"** and **"Statistical Test"** are two assessment methods based on the number of measurements collected in the workplace. These tests are included in both EN689 standards and are implemented in this package as **"Phase One"** and **"Phase Two,"** respectively.
+
+The **BOHS-NVvA (2011)** outlines the **"Individual Compliance Test"** and the **"Between-Worker Variance Test"** to evaluate exposure compliance while accounting for temporal variability in (average) exposure within and between workers in a SEG. These are implemented in the package as the functions **"Phase3"** and **"Individual Compliance."**
+
+Additionally, calculations for **overexposure** and **exceedance** have been integrated into the package.
+
+## Package Dependencies  
+This package relies on the following R packages:  
+- **tolerance**  
+- **lme4**  
+- **dplyr**  
+- **FSA**  
+
+# Background  
+
+#### **EN689 Preliminary Test**  
+Equations comparing exposure concentrations with the **OEL** are reported in **Annex C of EN689:1995** and **Section 5.5.2 of EN689:2018**.
+
+#### **EN689 Statistical Test**  
+Statistical models are described in **Annex D of EN689:1995** and **Annex F of EN689:2018**.  
+The statistical principle of **EN689:1995** was partially modified to compare the two standards:  
+- The conventional **< 5% probability (orange area)** and **< 0.01% probability (green area)** of exceeding the **OEL** can be used to determine **compliance** or **non-compliance** of SEGs over lognormal distributions. A minimum of **six measurements per SEG** is required.
+
+#### **BOHS-NVvA Individual Compliance Test**  
+In **Chapter 3 of the BOHS-NVvA guidance**, **analysis of variance** is used to determine the variability of individuals’ exposures within a SEG. This allows testing **compliance of an individual worker’s exposure** with the OEL.  
+
+To compare the **individual compliance test** with the statistical tests of the EN689s, a minimum of **six measurements per SEG**, with at least **one worker having repeated measurements**, was considered.
+
+## Installation  
+
+To install the latest version from GitHub:
+
+```r
+install.packages("devtools")
+devtools::install_github("tonyderrico/OHcomplianceStrategies")
+```
+
+## Functions Overview
+### Phase 1 - EN689:1995
+
+```r
+#' Phase 1, EN689 1995 - Testing Compliance for One Measurement
+#'
+#' Compliance, uncertain compliance, or non-compliance can be evaluated
+#' for one measurement. The exposure index is calculated as worker measurement / OEL.
+#' Compliance is achieved if the index is ≤ 0.1.
+#' If the index is > 0.1 but ≤ 1, there is no decision ("UC"),
+#' and additional measurements are necessary (at least three).
+#' Non-Compliance is reached if the measurement > OEL or if the exposure index > 1.
+#'
+#' @param measurements One measurement under assessment
+#' @param OEL Occupational Exposure Limit of the agent
+#' @return Compliance ("C"), Non-Compliance ("NC"), or Uncertainty of Compliance ("UC")
+#' @export
+
+phase1EN1995_k1 <- function(measurements, OEL)
+```
+
+```r
+#'Phase 1, EN689 1995  - testing compliance for at least Three measurements
+#'
+#'Compliance, uncertain compliance or non-compliance can be evaluated
+#'for at least three measurements. Calculation of exposure indeces is performed (worker measurement/OEL).
+#'Compliance is achieved if all indeces are below or equal to 0.25.
+#'If at least an index is greater than 0.25 but all indeces are lower/equal than 1 and the
+#'geometric mean of the measurements is lower/equal than 0.5, Compliance is accomplished.
+#'Contrarly, there is no decision ("UC").
+#'There is Non-Compliance if at least a measurement is greater than the OEL
+#'and/or if at least an exposure index is greater than 1.
+#' @param measurements At least 3 measurements
+#' @param OEL Occupational Exposure Limit of the agent
+#' @return Compliance (C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
+#' @export
+
+phase1EN1995_k3 <- function(measurements, OEL)
+```
+### Phase 1 - EN689:2018
+
+```r
+#'Phase 1, EN689 2018  - testing compliance for 3 measurements
+#'
+#'Compliance, uncertain compliance or non-compliance of a SEG can be
+#'evaluated for three measurements. Compliance is achieved if all of
+#'the measurements are below or equal to 0.1xOEL. There is Uncertain Compliance if
+#'at least a measurement is greater than 0.1xOEL but below the OEL.
+#'There is Non-Compliance if at least a measurement is greater than OEL.
+#' @param measurements Three measurements
+#' @param OEL Occupational Exposure Limit of the agent
+#' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
+#' @export
+
+phase1EN2018_k3 <- function(measurements, OEL)
+```
+
+```r
+#'Phase 1, EN689 2018  - testing compliance for 4 measurements
+#'
+#'Compliance, uncertain compliance or non-compliance of a SEG can be
+#'evaluated for four measurements. Compliance is achieved if all of the measurements
+#'are below or equal to 0.15xOEL. There is Uncertain Compliance if at least a
+#'measurement is greater than 0.15xOEL but below the OEL. There is Non-Compliance
+#'if at least a measurement is greater than OEL.
+#' @param measurements Four measurements 
+#' @param OEL Occupational Exposure Limit of the agent
+#' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
+#' @export
+
+phase1EN2018_k4 <- function(measurements, OEL)
+```
+
+```r
+#'Phase 1, EN689 2018  - testing compliance for 5 measurements
+#'
+#'Compliance, uncertain compliance or non-compliance of a SEG can be evaluated for five measurements. 
+Compliance is achieved if all of the measurements are below or equal to 0.2xOEL. 
+There is Uncertain Compliance if at least a measurement is greater than 0.2xOEL but below the OEL. 
+There is Non-Compliance if at least a measurement is greater than OEL.
+#' @param measurements Five measurements 
+#' @param OEL Occupational Exposure Limit of the agent
+#' @return Compliance ("C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
+#' @export
+
+phase1EN2018_k5 <- function(measurements, OEL)
+```
+
+### Phase 2 - EN689:1995
+
+```r
+#'Phase 2, EN689 1995  - testing compliance exceedance
+#'
+#' The normal distribution of the measurements is operated, and 99.9th percentile and 95th percentile values are observed to assess 
+#' the possible exceedance of the OEL.
+#' Compliance or "Green Area" is achieved if the value of the 99,9 the percentile is lower than the OEL, 
+#' Uncertain Compliance or "Orange Area" is achieved if
+#' the value of the 99.9th percentile is lower than the OEL but the value of 95th percentil is greater than the OEL. 
+#' Non Compliance or "Red Area" is achieved if the OEL is lower than the value of the 95th percentile.
+#' @param measurements measurements of the SEG under assessment
+#' @param OEL Occupational Exposure Limit of the agent
+#' @return Green Area, Orange Area or Red Area
+#' @export
+
+phase2EN689.1995 <- function(measurements, OEL)
+```
+
+### Phase 2 - EN689:2018
+
+```r
+#' Phase 2, EN689 2018 - UTLv (Upper Tolerance Limit value)
+#' 
+#' This function evaluates compliance with the Occupational Exposure Limit (OEL) 
+#' based on the Upper Tolerance Limit value (UTLv), calculated with a 95% Percentile 
+#' Confidence Level and a 70% Confidence Level.
+#' 
+#' The test compares the UTLv with the OEL:
+#' - If **UTL > OEL**, there is exceedance → **"Not Compliant"**.
+#' - If **UTL < OEL**, the probability of exceedance is acceptable → **"Compliant"**.
+#' 
+#' @param measurements Numeric vector. At least 6 exposure measurements from the SEG under assessment.
+#' @param OEL Numeric. The Occupational Exposure Limit of the agent.
+#' @return A character string:
+#' - `"Not Compliant"` if `UTL > OEL`
+#' - `"Compliant"` if `UTL < OEL`
+#' 
+#' @export
+
+phase2_UTL <- function(measurements, OEL)
+```
+
+### Phase 2 - BOHS/NVvA 2011
+
+```r
+#' Phase 2, BOHS/NVvA & EN689 2018 - U test
+#'
+#' This function applies the Mann-Whitney U test (70% Confidence) to evaluate SEG compliance 
+#' based on the number of measurements performed.
+#' 
+#' The test compares the calculated U value (pg. 42, EN689 2018) with the U threshold from the Mann-Whitney U table:
+#' - If **U > OEL**, there is **Compliance**.
+#' - If **U < OEL**, there is **Non-Compliance**.
+#' 
+#' The function includes U-thresholds for a maximum of 15 measurements per SEG.
+#'
+#' @param measurements Numeric vector. Measurements of the SEG under assessment (between 6 and 15).
+#' @param OEL Numeric. The Occupational Exposure Limit of the agent.
+#' 
+#' @return A character string:
+#' - "Compliant" if `U < threshold`
+#' - "Not Compliant" if `U > threshold`
+#'
+#' @export
+phase2_Uvalue <- function(measurements, OEL)
+```
+
+## Phase 3 - BOHS/NVvA 2011
+
+```r
+#'Phase 3, BOHS/NvVA 2011  - Between Worker Variance
+#'
+#' Linear Mixed models using REML (Restricted Maximum Likelihood) is performed to calculate between worker variance
+#' and total variance. The Compliance is achieved if the between worker variance is lower
+#' than 0.2 of the total variance. Contrarily, there is Non-Compliance.
+#' @param seg data of SEG under assessment
+#' @param measurements samples concentrations of the agent
+#' @param workers workers codes/names/ID
+#' @return BW < 0.2totalVariance ("Compliant"), BW > 0.2totalVariance ("Not Compliant")
+#' @export
+
+phase3_BoHS.NvVA <- function(seg, workers, measurements)
+```
+
+```r
+#'Phase 3, BOHS/NVVA 2011 - Individual Compliance
+#'
+#' Individual Compliance is achieved when there is less than 20% probability that
+#' workers in a SEG have more than 5% of exposure greater than the OEL.
+#' @param seg data of the SEG under assessment
+#' @param measurements samples concentrations of the agent
+#' @param workers workers code/name
+#' @param OEL Occupational Exposure Limit
+#' @return BW < 0.2totalVariance, Compliant or Not Compliant
+#' @export
+
+
+Individual_Compliance <- function(seg, workers, measurements, OEL) 
+```
+
+

@@ -40,7 +40,7 @@ phase1EN1995_k1 <- function(measurements, OEL) {
 #' @return Compliance (C"), Non-Compliance ("NC") or Uncertainty of Compliance ("UC")
 #' @export
 
-phase1EN1995_k <- function(measurements, OEL) {
+phase1EN1995_k3 <- function(measurements, OEL) {
   ratios <- measurements / OEL
   
   if (any(measurements > OEL) || any(ratios > 1)) {

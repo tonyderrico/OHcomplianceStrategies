@@ -1,10 +1,10 @@
 Package: OHcomplianceStrategies
-Type: Package
+Type: R Package
 Title: Statistical Compliance Strategies To Test Occupational Exposure With OEL Value
-Version: 0.1.0
-Author: Antonio D'Errico
-Maintainer: Antonio D'Errico <antonio.derrico@unito.it>
-Description: The EN689/1995 and EN689/2018 are the European standards employed to assess the compliance of similar exposed groups (SEGs) of workers to airborne substances and comparing workers' exposures with occupational exposure limit (OEL).
+Version: 0.2.0
+Author: Antonio D'Errico (Toni)
+Maintainer: Antonio D'Errico <a.derrico2@uu.nl>
+Description: A R package to support occupational specialists to test workers exposures to airbone agents with the OEL.
 License: MIT
 Encoding: 
 LazyData: true

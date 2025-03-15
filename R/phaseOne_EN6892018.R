@@ -32,16 +32,17 @@ phase1EN2018_k3 <- function(measurements, OEL) {
 #' @export
 
 phase1EN2018_k4 <- function(measurements, OEL) {
-  if (length(measurements) > 4) {
-    stop("Dataset exceeds three measurements. Function will not run.")
+  if (length(measurements) > 4) {  # Enforcing a maximum of 3 measurements
+    stop("Dataset exceeds four measurements. Function will not run.")
   }
-  compliance <- switch(
-    TRUE,
-    any(measurements > OEL), "Not Compliant",
-    any(measurements >= 0.15 * OEL), "Uncertain Compliant",
-    "Compliant"
-  )
-  return(compliance)
+  
+  if (any(measurements > OEL)) {
+    return("Not Compliant")
+  } else if (any(measurements >= 0.15 * OEL)) {
+    return("Uncertain Compliant")
+  } else {
+    return("Compliant")
+  }
 }
 
 

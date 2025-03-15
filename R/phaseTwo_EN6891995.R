@@ -4,7 +4,7 @@
 #' the possible exceedance of the OEL.
 #' Compliance or "Green Area" is achieved if the value of the 99,9 the percentile is lower than the OEL, 
 #' Uncertain Compliance or "Orange Area" is achieved if
-#' the value of the 99.9th percentile is lower than the OEL but the value of 95th percentil is greater than the OEL. 
+#' the value of the 99.9th percentile is lower than the OEL but the value of 95th percentile is greater than the OEL. 
 #' Non Compliance or "Red Area" is achieved if the OEL is lower than the value of the 95th percentile.
 #' @param measurements measurements of the SEG under assessment
 #' @param OEL Occupational Exposure Limit of the agent
